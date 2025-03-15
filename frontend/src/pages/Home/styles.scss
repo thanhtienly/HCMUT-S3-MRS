@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+.carousel-inner {
+  .carousel-item {
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 700px; /* Set a fixed height for the images */
+      object-fit: cover; /* Ensure the images cover the entire area without distortion */
+    }
+
+    .carousel-caption {
+      font-family: "Lobster", cursive;
+      font-weight: 800;
+      font-size: 70px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgb(255, 255, 255);
+      text-align: center;
+      // background-color: rgba(108, 106, 106, 0.5); /* Optional: Add a background color for better readability */
+      padding: 10px 20px;
+      border-radius: 13px;
+    }
+  }
+}

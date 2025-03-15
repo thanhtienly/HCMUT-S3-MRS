@@ -1,0 +1,19 @@
+:root {
+  --primary_background: linear-gradient(
+    to right,
+    rgb(63, 193, 236),
+    rgb(60, 137, 236)
+  );
+  --primaryDeep_background: linear-gradient(
+    to right,
+    rgb(104, 185, 212),
+    rgb(119, 170, 238)
+  );
+  --primary: rgb(68, 172, 216);
+  --primaryText: rgb(84, 14, 101);
+  --primaryButton: linear-gradient(
+    to right,
+    rgb(89, 185, 216),
+    rgb(94, 152, 228)
+  );
+}
