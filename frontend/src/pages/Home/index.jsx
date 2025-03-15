@@ -1,7 +1,7 @@
 import React from "react";
 import bk1 from "../../assets/bkCs1.png";
 
-import bk2 from "../../assets/h6Bk.jpg";
+import bk2 from "../../assets/bku05.png";
 import bk3 from "../../assets/bkcs2h6.jpg";
 
 import "./styles.scss";

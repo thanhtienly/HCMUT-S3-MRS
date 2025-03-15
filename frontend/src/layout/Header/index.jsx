@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, ShoppingBag, User } from "lucide-react";
-// import logo from '../../assets/jollibee.png';
+
 import logoBK from "../../assets/HCMUT_official_logo.png";
 import tel from "../../assets/dhqg_BK.png";
 
@@ -23,7 +23,7 @@ const Header = () => {
     { path: "/about", label: "VỀ HCMUT" },
     { path: "/menu", label: "ĐẶT CHỖ HỌC" },
     // { path: "/branch", label: "CHI NHÁNH" },
-    { path: "/contact", label: "LIÊN HỆ" },
+    { path: "/contact", label: "PHẢN HỒI" },
     // { path: "/careers", label: "TUYỂN DỤNG" },
   ];
 

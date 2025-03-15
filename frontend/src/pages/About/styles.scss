@@ -1,0 +1,44 @@
+// #lol {
+//     width: 400px;
+//     padding: 5px 5px;
+//     height: 400px; /* Set a fixed height for the images */
+//     object-fit: cover; /* Ensure the images cover the entire area without distortion */
+// }
+// .about-1{
+//     display: flex;
+//     justify-content: center;
+//     flex-direction: row;
+//     height: 400px;
+// }
+// .text-1{
+//     justify-content: left;
+//     width: 700px;
+//     font-size: 16px;
+//     font-family: 'Roboto','Helvetica Neue',Helvetica,Arial,sans-serif;
+//     max-width: 1104px;
+//     text-align: justify;
+// }
+// #mini-lol {
+//     width: 30%;
+//     height: 700px; /* Set a fixed height for the images */
+//     object-fit: cover; /* Ensure the images cover the entire area without distortion */
+// }
+
+// .title {
+//     font-size: 36px;
+//     font-weight: bold;
+//     color: #E31837;
+//     font-family: 'MergeBlack',sans-serif;
+//     font-style: normal;
+//     line-height: 1.42857143;
+// }
+.wrapper_about {
+  padding: 20px;
+}
+.warpper_picture {
+  max-width: 100%;
+  padding: 6px 0;
+}
+.wrapper_about_row {
+  padding: 10px 0;
+}
