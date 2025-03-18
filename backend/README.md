@@ -2,13 +2,13 @@
 
 ## Tạo env file (.env)
 
-PORT=
+PORT=<br>
 
-MYSQL_HOST=
-MYSQL_PORT=
-MYSQL_USERNAME=
-MYSQL_PASSWORD=
-MYSQL_DATABASE=
+MYSQL_HOST=<br>
+MYSQL_PORT=<br>
+MYSQL_USERNAME=<br>
+MYSQL_PASSWORD=<br>
+MYSQL_DATABASE=<br>
 
 với các giá trị của port, mysql_host,... là các giá trị mong muốn của bạn
 
