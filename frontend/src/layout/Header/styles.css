@@ -1,0 +1,76 @@
+.main-nav {
+  padding: 0.75rem 0;
+}
+
+.nav-list .nav-item {
+  position: relative;
+}
+
+.nav-list .nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.nav-list .nav-link:hover {
+  background-color: #f4d2d6;
+  /* color: #e31837; */
+  color: var(--primary);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.nav-list .nav-link.active {
+  background-color: #f4d2d6;
+  /* color: #e31837; */
+  color: var(--primary);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.text-danger {
+  color: #e31837 !important;
+}
+
+.btn-warning {
+  background-color: #ffa400;
+  border-color: #ffa400;
+  transition: background-color 0.3s ease;
+}
+
+.btn-warning:hover {
+  background-color: #ff9200;
+  border-color: #ff9200;
+}
+
+/* Add smooth transition for hover effects */
+.nav-link {
+  transition: all 0.3s ease;
+}
+
+/* Optional: Add a subtle underline effect on hover */
+.nav-list .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  /* background-color: #e31837; */
+  background-color: #1275e5;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-list .nav-link:hover::after,
+.nav-list .nav-link.active::after {
+  width: 100%;
+}
+
+.bag-quantity {
+  vertical-align: top;
+  margin-left: -10px;
+}
