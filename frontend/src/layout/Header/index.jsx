@@ -22,7 +22,7 @@ const Header = () => {
     { path: "/", label: "TRANG CHỦ" },
     { path: "/about", label: "VỀ HCMUT" },
     { path: "/menu", label: "ĐẶT CHỖ HỌC" },
-    // { path: "/branch", label: "CHI NHÁNH" },
+    { path: "/history", label: "QUẢN LÝ ĐẶT CHỖ" },
     { path: "/contact", label: "PHẢN HỒI" },
     // { path: "/careers", label: "TUYỂN DỤNG" },
   ];

@@ -7,9 +7,9 @@ import "./styles.scss";
 
 // Schema validation với Yup
 const signupSchema = Yup.object().shape({
-  cccd: Yup.string()
-    .length(9, "Căn cước công dân phải có 9 ký tự")
-    .required("Vui lòng nhập căn cước công dân"),
+  mssv: Yup.string()
+    .length(7, "Mã số sinh viên phải có 7 ký tự")
+    .required("Vui lòng nhập mã số sinh viên công dân"),
   username: Yup.string().required("Tên đăng nhập không được để trống"),
   firstname: Yup.string().required("Tên không được để trống"),
   lastname: Yup.string().required("Họ không được để trống"),
@@ -48,18 +48,14 @@ const Signup = () => {
     const payload = {
       tenDangNhap: data.username,
       matKhau: data.password,
+      mssv: data.mssv,
       ho: data.lastname,
       ten: data.firstname,
       ngaySinh: data.birthdate,
       email: data.email,
       gioiTinh: data.gender,
-      soDienThoai: [data.phone],
+      soDienThoai: data.phone,
       maTaiKhoan: "user",
-      cccdQuanTriVien: {
-        cccd: "999999999",
-      },
-      anhThongTin: "https://www.vecteezy.com/free-vector/user-profile",
-      listThongBao: null,
     };
 
     fetch("http://localhost:8080/thongTin/create", {
@@ -122,6 +118,16 @@ const Signup = () => {
               <p className="errorFormValidator_css">
                 {errors.lastname.message}
               </p>
+            )}
+          </div>
+          <div className="inputContainer">
+            <input
+              {...register("mssv")}
+              placeholder="Mã số sinh viên"
+              className="inputBox"
+            />
+            {errors.mssv && (
+              <p className="errorFormValidator_css">{errors.mssv.message}</p>
             )}
           </div>
 
