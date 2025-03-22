@@ -9,23 +9,9 @@ const User = sequelize.define(
       allowNull: false,
       primaryKey: true,
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    isVerify: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
-      defaultValue: false,
-    },
-    verfiedAt: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
     },
     role: {
       type: DataTypes.ENUM("Student", "Manager", "Staff"),

@@ -14,13 +14,30 @@ const Student = sequelize.define(
       allowNull: false,
       unique: true,
     },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
     gender: {
       type: DataTypes.ENUM("Nam", "Nữ", "Khác"),
       allowNull: false,
     },
-    fullName: {
+    firstName: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    phoneNumber: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    birthday: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
     },
   },
   {

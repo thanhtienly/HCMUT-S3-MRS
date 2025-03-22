@@ -18,7 +18,11 @@ const Manager = sequelize.define(
       type: DataTypes.ENUM("Nam", "Nữ", "Khác"),
       allowNull: false,
     },
-    fullName: {
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastName: {
       type: DataTypes.STRING,
       allowNull: false,
     },

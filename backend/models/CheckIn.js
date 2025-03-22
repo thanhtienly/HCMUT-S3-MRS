@@ -13,7 +13,7 @@ const CheckIn = sequelize.define(
       type: DataTypes.UUID,
       allowNull: false,
     },
-    studentId: {
+    userId: {
       type: DataTypes.UUID,
       allowNull: false,
     },
