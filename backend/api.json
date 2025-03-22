@@ -1,0 +1,28 @@
+[
+  {
+    "Name": "Sign up API",
+    "Request": {
+      "method": "POST",
+      "body": {
+        "email": "",
+        "password": "",
+        "studentId": "",
+        "firstName": "",
+        "lastName": "",
+        "birthday": "String with format YYYY-MM-DD",
+        "gender": "Enum('Nam', 'Nữ', 'Khác')",
+        "phone": ""
+      }
+    }
+  },
+  {
+    "Name": "Log in API",
+    "Request": {
+      "method": "POST",
+      "body": {
+        "email": "",
+        "password": ""
+      }
+    }
+  }
+]
