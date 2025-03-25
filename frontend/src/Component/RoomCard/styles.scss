@@ -1,0 +1,70 @@
+.container_roomCard {
+}
+
+.wrapper_roomCard {
+  // border: 2px solid var(--primary);
+  height: 350px;
+  border-radius: 8px;
+  &:hover {
+    cursor: pointer;
+  }
+  margin-bottom: 25px;
+}
+
+.wrapper_image {
+  height: 70%;
+}
+
+.wrapper_image_room {
+  width: 100%; /* Chiều rộng bằng khung cha */
+  height: 100%; /* Chiều cao bằng khung cha */
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.wrapper_content {
+  background-color: rgb(237, 235, 235);
+}
+.wrapper_title_room {
+  display: flex;
+  justify-content: space-between;
+}
+.type_room {
+  padding: 4px 0 0 14px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.wrapper_seat {
+  padding: 4px 14px 0 0;
+}
+
+.wrapper_building_floor {
+}
+
+.inforRoom {
+  padding-left: 14px;
+}
+
+.inforRoom {
+}
+
+.wrapper_roomNumber {
+}
+
+.roomNumber {
+  padding-left: 14px;
+}
+.wrapper_state {
+  display: flex;
+  justify-content: flex-end;
+}
+.wrapper_display_state {
+  margin: 0 14px 7px 0;
+  padding: 8px 25px;
+  background-color: rgb(177, 255, 60);
+  border-radius: 13px;
+}
+
+.state_room {
+}

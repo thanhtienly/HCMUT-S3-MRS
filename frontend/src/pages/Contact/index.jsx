@@ -43,12 +43,12 @@ const Contact = () => {
   };
   return (
     <section class="py-3 py-md-5">
-      <div class="container">
+      {/* <div class="container">
         <div class="row justify-content-md-center">
           <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
             {/* <h3 class="fs-6 text-secondary mb-2 text-uppercase text-center">
               Get in Touch
-            </h3> */}
+            </h3> 
             <div className={cx("wrapper_title")}>
               <h2 class="mb-4 mb-md-5 text-center">
                 Phản hồi về chất lượng dịch vụ
@@ -57,7 +57,7 @@ const Contact = () => {
             <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle" />
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div class="container">
         <div class="row gy-3 gy-md-4 gy-lg-0 align-items-xl-center">
