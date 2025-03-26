@@ -1,8 +1,8 @@
 import styles from "./styles.scss";
 import classNames from "classnames/bind";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "../../Component/SearchBar";
-import dataRoom from "./DataFake";
+import dataRoomList from "./DataFake";
 import { SearchIcon } from "../../Component/Icon/Icon";
 import RoomCard from "../../Component/RoomCard";
 import ReactPaginate from "react-paginate";
@@ -14,10 +14,6 @@ const cx = classNames.bind(styles);
 const typeTable = ["tự học", "học nhóm", "mentoring"];
 const building = ["H1", "H2", "H3", "H6"];
 const listBuilding = [
-  {
-    name: "Danh sách các tòa",
-    id: 999,
-  },
   {
     name: "Toà nhà H1",
     id: 0,
@@ -36,10 +32,19 @@ const listBuilding = [
   },
 ];
 function Menu() {
-  const [building, setBuiling] = useState(0);
+  const [building, setBuiling] = useState(1);
   const [currentPage, setCurrentPage] = useState(0);
+  const [dataRoom, setDataRoom] = useState(dataRoomList);
   const itemsPerPage = 8;
-
+  useEffect(
+    function () {
+      let newDataRoom = dataRoomList.filter(
+        (room) => room.building === building
+      );
+      setDataRoom(newDataRoom);
+    },
+    [building]
+  );
   // Tính toán danh sách sản phẩm hiển thị
   const offset = currentPage * itemsPerPage;
   const currentItems = dataRoom.slice(offset, offset + itemsPerPage);
@@ -87,13 +92,20 @@ function Menu() {
 
         <div className={cx("col-md-3")}>
           <div className={cx("list-group")}>
+            <div className={cx("wrapper_navBar_item_title")}>
+              Danh sách các tòa
+            </div>
+          </div>
+
+          <div className={cx("list-group")}>
             {listBuilding.map(function (item, index) {
               return (
                 <div
                   key={index}
-                  className={cx(
-                    "wrapper_navItem list-group-item list-group-item-action"
-                  )}
+                  className={cx("wrapper_navBar_item", {
+                    active_navBar: item.id === building,
+                  })}
+                  onClick={() => setBuiling(item.id)}
                 >
                   {item.name}
                 </div>
@@ -145,3 +157,4 @@ function Menu() {
   );
 }
 export default Menu;
+// wrapper_navItem list-group-item list-group-item-action

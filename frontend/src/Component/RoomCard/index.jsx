@@ -29,10 +29,12 @@ function RoomCard({ data }) {
               {" "}
               Loại phòng: {typeTable[data.type]}
             </span>
-            <span className={cx("wrapper_seat")}>
+            <span className={cx("wrapper_maxSeat")}>
               {""}
-              {data.maxSeat}|{data.currentSeat}
+              {data.maxSeat} |
             </span>
+
+            <span className={cx("wrapper_seat")}>{data.currentSeat}</span>
           </div>
           <div className={cx("wrapper_building_floor")}>
             <span className={cx("inforRoom inforRoom_building")}>

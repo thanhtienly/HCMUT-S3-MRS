@@ -63,3 +63,30 @@
     font-weight: 500;
   }
 }
+
+//navbar
+.active_navBar {
+  background-color: var(--primary);
+  color: var(--white);
+}
+.wrapper_navBar_item_title {
+  padding: 4px 18px;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 6px;
+  border: 4px solid orangered;
+  color: var(--primary);
+}
+.wrapper_navBar_item {
+  padding: 4px 18px;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 500;
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(227, 225, 225);
+    color: rgb(45, 44, 44);
+  }
+  border: 2px solid rgb(0, 191, 255);
+}

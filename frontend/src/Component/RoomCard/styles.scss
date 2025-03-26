@@ -5,10 +5,14 @@
   // border: 2px solid var(--primary);
   height: 350px;
   border-radius: 8px;
+  margin-bottom: 25px;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+
   &:hover {
+    transform: translateY(-2px);
     cursor: pointer;
   }
-  margin-bottom: 25px;
 }
 
 .wrapper_image {
@@ -34,9 +38,14 @@
   font-size: 18px;
   font-weight: 500;
 }
-
+.wrapper_maxSeat {
+  padding-top: 6px;
+  color: var(--primary);
+  font-weight: 500;
+}
 .wrapper_seat {
-  padding: 4px 14px 0 0;
+  padding: 6px 14px 0 0;
+  color: var(--primary);
 }
 
 .wrapper_building_floor {
