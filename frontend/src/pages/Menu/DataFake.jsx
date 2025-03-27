@@ -11,6 +11,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -22,6 +24,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -33,6 +37,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -44,6 +50,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -55,6 +63,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -66,6 +76,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -77,6 +89,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -88,6 +102,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -99,6 +115,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -110,6 +128,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -121,6 +141,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -132,6 +154,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -143,6 +167,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -154,6 +180,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -165,6 +193,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -176,6 +206,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -187,6 +219,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -198,6 +232,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -209,6 +245,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -220,6 +258,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -231,6 +271,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -242,6 +284,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -253,6 +297,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -264,6 +310,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -275,6 +323,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -286,6 +336,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -297,6 +349,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -308,6 +362,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -319,6 +375,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -330,6 +388,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -341,6 +401,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -352,6 +414,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -363,6 +427,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -374,6 +440,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -385,6 +453,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "1",
@@ -396,6 +466,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "0",
@@ -407,6 +479,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "0",
@@ -418,6 +492,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "0",
@@ -429,6 +505,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "0",
@@ -440,6 +518,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "0",
@@ -451,6 +531,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "0",
@@ -462,6 +544,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "0",
@@ -473,6 +557,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "0",
@@ -484,6 +570,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
   {
     id: "0",
@@ -495,6 +583,8 @@ const dataRoom = [
     currentSeat: 1,
     type: 0,
     state: 1,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
   },
 ];
 export default dataRoom;

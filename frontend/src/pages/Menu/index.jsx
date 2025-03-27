@@ -6,6 +6,8 @@ import dataRoomList from "./DataFake";
 import { SearchIcon } from "../../Component/Icon/Icon";
 import RoomCard from "../../Component/RoomCard";
 import ReactPaginate from "react-paginate";
+import imageClassroom from "../../assets/imageClassroom.jpg";
+
 const cx = classNames.bind(styles);
 /*
   type: 0 tu hoc, 1 nhom  ,2 memtoring
@@ -55,7 +57,13 @@ function Menu() {
   };
   return (
     // <div className={cx("container-fluid")}>
-    <div className={cx("container")}>
+    <div
+      className={cx("menu-container container_wrapper_menu")}
+      style={{
+        backgroundImage: `url(${imageClassroom})`,
+        backgroundSize: "cover",
+      }}
+    >
       {/* Thanh tìm kiếm */}
       <nav className={cx("wrapper_navbar")}>
         <div className={cx("wrapper_search")}>
@@ -90,7 +98,7 @@ function Menu() {
           </a>
         </div> */}
 
-        <div className={cx("col-md-3")}>
+        <div className={cx("col-md-2")}>
           <div className={cx("list-group")}>
             <div className={cx("wrapper_navBar_item_title")}>
               Danh sách các tòa
@@ -115,7 +123,7 @@ function Menu() {
         </div>
 
         {/* Danh sách sản phẩm */}
-        <div className={cx("col-md-9")}>
+        <div className={cx("col-md-10")}>
           <div className={cx("row")}>
             {/* {[...Array(8)].map((_, index) => (
               <div
