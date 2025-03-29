@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import "./styles.scss";
+import signup from "../../assets/signup.jpg";
 
 // Schema validation với Yup
 const signupSchema = Yup.object().shape({
@@ -74,7 +75,13 @@ const Signup = () => {
   };
 
   return (
-    <div className={"container_signup"}>
+    <div
+      className={"container_signup"}
+      style={{
+        backgroundImage: `url(${signup})`,
+        backgroundSize: "cover",
+      }}
+    >
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="container-fluid d-flex flex-column align-items-center">
           {/* <h2>Sign up</h2> */}
