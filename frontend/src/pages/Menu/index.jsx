@@ -6,7 +6,7 @@ import dataRoomList from "./DataFake";
 import { SearchIcon } from "../../Component/Icon/Icon";
 import RoomCard from "../../Component/RoomCard";
 import ReactPaginate from "react-paginate";
-import imageClassroom from "../../assets/imageClassroom.jpg";
+import imageClassroom from "../../assets/bku07.jpg";
 
 const cx = classNames.bind(styles);
 /*

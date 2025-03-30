@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import "./styles.scss";
-import signup from "../../assets/signup.jpg";
+import signup from "../../assets/bku05.jpg";
 
 // Schema validation với Yup
 const signupSchema = Yup.object().shape({

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles.scss";
 import { message } from "antd";
-import signin from "../../assets/signin.jpg";
+import signin from "../../assets/bku04.jpg";
 const Signin = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

@@ -9,6 +9,7 @@ import Contact from "../pages/Contact";
 import Management from "../pages/Management";
 import Menu from "../pages/Menu";
 import RoomDetail from "../Component/RoomDetail";
+import Success from "../pages/Message/Success";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
       { path: "history/", element: <Management /> },
       { path: "menu/", element: <Menu /> },
       { path: "menu/roomDetail/:id", element: <RoomDetail /> },
+      { path: "register/successful", element: <Success /> },
     ],
   },
 ]);

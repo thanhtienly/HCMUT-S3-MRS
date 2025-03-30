@@ -14,3 +14,22 @@ export const SearchIcon = ({ width = "30px", height = "30px", className }) => (
     </g>
   </svg>
 );
+
+export const IconClose = ({
+  width = "2.4rem",
+  height = "2.4rem",
+  className,
+}) => (
+  <svg
+    className={className}
+    fill="currentColor"
+    color="inherit"
+    fontSize="inherit"
+    viewBox="0 0 48 48"
+    xmlns="http://www.w3.org/2000/svg"
+    width={width}
+    height={height}
+  >
+    <path d="M33.2 36.02a1 1 0 0 0 1.4 0l1.42-1.42a1 1 0 0 0 0-1.4l-9.2-9.2 9.2-9.2a1 1 0 0 0 0-1.4l-1.41-1.42a1 1 0 0 0-1.42 0L24 21.17l-9.2-9.2a1 1 0 0 0-1.4 0l-1.42 1.42a1 1 0 0 0 0 1.42l9.2 9.19-9.2 9.2a1 1 0 0 0 0 1.4l1.41 1.42a1 1 0 0 0 1.42 0l9.19-9.2 9.2 9.2Z"></path>
+  </svg>
+);

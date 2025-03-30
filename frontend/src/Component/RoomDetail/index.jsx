@@ -9,6 +9,8 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { ThumbsUp, ThumbsDown, Reply } from "lucide-react";
 import DataFake from "../../pages/Menu/DataFake.jsx";
 import pictureRoom from "../../assets/pictureRoom.jpg";
+import RegisterForm from "../RegisterForm/index.jsx";
+import { useNavigate } from "react-router-dom";
 // import pictureImage from "../../DataStore/Picture";
 const typeTable = ["Tự học", "Học nhóm", "Mentoring"];
 const building = ["H1", "H2", "H3", "H6"];
@@ -17,37 +19,16 @@ const roomDetailFake = DataFake[0];
 console.log(roomDetailFake);
 function Product() {
   // const { id } = useParams();
+  const navigate = useNavigate();
   const [roomDetail, setRoomDetail] = useState(roomDetailFake);
-  // const [loading, setLoading] = useState(true);
-  // const { addToCart } = useContext(CartContext);
+  const [register, setRegister] = useState(false);
+  const handleOnClickRegister = () => {
+    setRegister(!register);
+  };
 
-  // useEffect(() => {
-  //   const fetchProduct = async () => {
-  //     try {
-  //       setLoading(true);
-  //       const response = await fetch(`http://localhost:8080/monAn/${id}`);
-  //       const data = await response.json();
-  //       setProduct(data);
-  //     } catch (error) {
-  //       console.error("Error fetching product data:", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchProduct();
-  // }, [id]);
   useEffect(() => {
     setRoomDetail(roomDetailFake);
   }, []);
-  // const handleAddToCart = () => {
-  //   const productToAdd = {
-  //     id: product.maMonAn,
-  //     name: product.tenMonAn,
-  //     price: product.gia,
-  //     image: product.anhMonAn,
-  //   };
-  //   addToCart(productToAdd);
-  // };
 
   const LoadingSkeleton = () => (
     <div className="container product-skeleton py-5">
@@ -97,7 +78,9 @@ function Product() {
                   Phòng: {roomDetail.roomNumber}
                 </h2>
                 {/* <p className="product-description">{product.moTa}</p> */}
-                <button className="btn btn-buy">Dặt chỗ học</button>
+                <button className="btn btn-buy" onClick={handleOnClickRegister}>
+                  Dặt chỗ học
+                </button>
                 {/* <button className="btn btn-cart">Tham gia phòng học</button> */}
               </div>
               <div className="product-details-section">
@@ -148,6 +131,9 @@ function Product() {
           </div>
         </div>
       </div>
+      {register && (
+        <RegisterForm onClickCloseRegisterForm={handleOnClickRegister} />
+      )}
     </div>
   );
 
