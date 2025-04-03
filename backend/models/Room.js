@@ -17,6 +17,18 @@ const Room = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    capacity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    type: {
+      type: DataTypes.ENUM(["Mentoring", "Group", "Individual"]),
+      allowNull: false,
+    },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     tableName: "rooms",
