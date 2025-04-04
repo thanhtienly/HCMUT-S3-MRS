@@ -45,17 +45,4 @@ const authorizedTokenMiddleware = (req, res, next) => {
   );
 };
 
-const isManager = (req, res, next) => {
-  const user = req["user"];
-
-  if (user["role"] == "Manager") {
-    return next();
-  }
-
-  return res.status(401).json({
-    error: 401,
-    message: `User is ${user["role"]}. Can't perform this action`,
-  });
-};
-
-module.exports = { authorizedTokenMiddleware, isManager };
+module.exports = { authorizedTokenMiddleware };
