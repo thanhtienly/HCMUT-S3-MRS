@@ -154,15 +154,4 @@ const logInStudent = async (req, res) => {
   });
 };
 
-const getBookingHistory = async (req, res) => {
-  const user = req["user"];
-
-  res.json({
-    data: {
-      userId: "1",
-      email: "tien.lythanh@hcmut.edu.vn",
-    },
-  });
-};
-
-module.exports = { signUpStudent, logInStudent, getBookingHistory };
+module.exports = { signUpStudent, logInStudent };
