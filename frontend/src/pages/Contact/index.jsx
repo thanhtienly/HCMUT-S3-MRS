@@ -4,8 +4,11 @@ import bkMain from "../../assets/bku01.jpeg";
 import styles from "./styles.scss";
 import classNames from "classnames/bind";
 import { useState } from "react";
+
+import { useNavigate } from "react-router-dom";
 const cx = classNames.bind(styles);
 const Contact = () => {
+  const navigate = useNavigate();
   const [mssv, setMssv] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -20,26 +23,27 @@ const Contact = () => {
       subject: subject,
       message: message,
     };
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status === "success") {
-          alert("Feedback sent successfully");
-          setMssv("");
-          setEmail("");
-          setPhone("");
-          setSubject("");
-          setMessage("");
-        } else {
-          alert("Feedback failed to send");
-        }
-      });
+    // fetch(url, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(payload),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     if (data.status === "success") {
+    //       alert("Feedback sent successfully");
+    //       setMssv("");
+    //       setEmail("");
+    //       setPhone("");
+    //       setSubject("");
+    //       setMessage("");
+    //     } else {
+    //       alert("Feedback failed to send");
+    //     }
+    //   });
+    navigate("report/successful");
   };
   return (
     <section class="py-3 py-md-5">

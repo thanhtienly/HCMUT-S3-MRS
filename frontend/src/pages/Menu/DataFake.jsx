@@ -588,3 +588,18 @@ const dataRoom = [
   },
 ];
 export default dataRoom;
+
+// {
+//   id: "1",
+//   pictureLink: "",
+//   building: 'H1'
+//   floor: 'Tầng 1'
+//   roomNumber: "100",
+//   maxSeat: 8,
+//   currentSeat: 1,
+//   type: 0,
+//   state: 1,
+//   description:
+//     "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+//   historyTime: "2025-04-04T16:04:43"
+// },

@@ -1,0 +1,142 @@
+.container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.01);
+}
+
+.title {
+  text-align: center;
+  color: #333;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  background: #f9f9f9;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.item:hover {
+  background: #e0e0e0;
+}
+
+.image {
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+  margin-right: 15px;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.viewButton,
+.deleteButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.viewButton {
+  color: #007bff;
+}
+
+.deleteButton {
+  color: red;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  width: 300px;
+}
+
+.closeButton {
+  display: block;
+  margin: 10px auto 0;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background: #0056b3;
+}
+
+// pagination
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+
+.pagination li {
+  margin: 0 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.pagination .active {
+  background-color: var(--primary);
+  // color: white;
+  // color: black;
+  font-weight: bold;
+}
+
+// .pagination .next {
+//   text-decoration: none;
+//   background-color: red;
+// }
+.pagination {
+  .previous a,
+  .next a {
+    text-decoration: none;
+
+    font-weight: 500;
+  }
+}
+// .wrapper_paginate_element {
+//   color: black !important;
+// }

@@ -2,7 +2,7 @@ import styles from "./styles.scss";
 import classNames from "classnames/bind";
 import { Icon } from "lucide-react";
 import { useState } from "react";
-import { IconClose } from "../Icon/Icon";
+import { FailIcon, IconClose } from "../Icon/Icon";
 
 import { useNavigate } from "react-router-dom";
 const cx = classNames.bind(styles);
@@ -16,9 +16,18 @@ function RegisterForm({ onClickCloseRegisterForm }) {
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [messageRegister, setMessageRegister] = useState(false);
+  const handleValidRegisterForm = () => {
+    return false;
+  };
   const handleOnClickRoomRegister = (e) => {
-    e.preventDefault();
-    navigate("/register/successful");
+    if (handleValidRegisterForm()) {
+      e.preventDefault();
+      navigate("/register/successful");
+    } else {
+      e.preventDefault();
+      setMessageRegister(true);
+    }
   };
   return (
     <div className={cx("wrapper")}>
@@ -84,6 +93,14 @@ function RegisterForm({ onClickCloseRegisterForm }) {
           </div>
         </form>
       </div>
+      {messageRegister && (
+        <div className={cx("wrapper_message_register")}>
+          <div>
+            <FailIcon />
+            Phòng đã có người đặt{" "}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

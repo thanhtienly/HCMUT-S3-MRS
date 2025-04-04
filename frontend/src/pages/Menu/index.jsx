@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
 import SearchBar from "../../Component/SearchBar";
 import dataRoomList from "./DataFake";
-import { SearchIcon } from "../../Component/Icon/Icon";
+import { IconMenu, MenuIcon, SearchIcon } from "../../Component/Icon/Icon";
 import RoomCard from "../../Component/RoomCard";
 import ReactPaginate from "react-paginate";
 import imageClassroom from "../../assets/bku07.jpg";
@@ -101,7 +101,10 @@ function Menu() {
         <div className={cx("col-md-2")}>
           <div className={cx("list-group")}>
             <div className={cx("wrapper_navBar_item_title")}>
-              Danh sách các tòa
+              <IconMenu />
+              <span className={cx("wrapper_title_menu")}>
+                Danh sách các tòa{" "}
+              </span>
             </div>
           </div>
 

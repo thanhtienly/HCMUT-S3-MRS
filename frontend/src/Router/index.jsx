@@ -6,10 +6,11 @@ import Signin from "../pages/Signin";
 import Signup from "../pages/Signup";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
-import Management from "../pages/Management";
+import Management from "../pages/BookingHistory";
 import Menu from "../pages/Menu";
 import RoomDetail from "../Component/RoomDetail";
 import Success from "../pages/Message/Success";
+import Report from "../layout/MessageReport/Report";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       { path: "menu/", element: <Menu /> },
       { path: "menu/roomDetail/:id", element: <RoomDetail /> },
       { path: "register/successful", element: <Success /> },
+      { path: "contact/report/successful", element: <Report /> },
     ],
   },
 ]);
