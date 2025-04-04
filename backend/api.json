@@ -24,5 +24,46 @@
         "password": ""
       }
     }
+  },
+  {
+    "Name": "List history API",
+    "Request": {
+      "method": "GET",
+      "body": [
+        {
+          "reservationId": "",
+          "startTime": "DateTime with format YYYY-MM-DD HH:mm:ss",
+          "endTime": "DateTime with format YYYY-MM-DD HH:mm:ss",
+          "building": "",
+          "floor": "",
+          "roomName": ""
+        },
+        {
+          "reservationId": "",
+          "startTime": "DateTime with format YYYY-MM-DD HH:mm:ss",
+          "endTime": "DateTime with format YYYY-MM-DD HH:mm:ss",
+          "building": "",
+          "floor": "",
+          "roomName": ""
+        }
+      ]
+    }
+  },
+  {
+    "Name": "Detail one history API",
+    "Request": {
+      "method": "GET",
+      "body": {
+        "reservationId": "",
+        "reservedTimeAt": "DateTime with format YYYY-MM-DD HH:mm:ss",
+        "startTime": "DateTime with format YYYY-MM-DD HH:mm:ss",
+        "endTime": "DateTime with format YYYY-MM-DD HH:mm:ss",
+        "building": "",
+        "floor": "",
+        "roomName": "",
+        "capacity": "integer",
+        "type": "Enum('Mentoring', 'Group', 'Individual')"
+      }
+    }
   }
 ]

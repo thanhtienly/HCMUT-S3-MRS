@@ -17,11 +17,13 @@ const associations = require("./models/associations");
 
 /* Import routes */
 const userRoute = require("./routes/user.route");
+const managementRoute = require("./routes/management.route");
 
 const app = express();
 app.use(express.json());
 
 app.use("/user", userRoute);
+app.use("/management", managementRoute);
 
 initDB()
   .then(() => {
