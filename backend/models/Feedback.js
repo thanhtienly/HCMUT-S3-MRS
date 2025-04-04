@@ -14,8 +14,14 @@ const Feedback = sequelize.define(
       allowNull: false,
     },
     studentId: {
-      type: DataTypes.UUID,
+      type: DataTypes.STRING,
       allowNull: false,
+      references: {
+        model: "students",
+        key: "studentId",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "CASCADE",
     },
     createdAt: {
       type: DataTypes.BIGINT,
