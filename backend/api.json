@@ -1,6 +1,7 @@
 [
   {
-    "Name": "Sign up API",
+    "Name": "Student Sign up API",
+    "Endpoint": "http://localhost:8000/user/student/sign-up",
     "Request": {
       "method": "POST",
       "body": {
@@ -16,7 +17,8 @@
     }
   },
   {
-    "Name": "Log in API",
+    "Name": "Student Log in API",
+    "Endpoint": "http://localhost:8000/user/student/log-in",
     "Request": {
       "method": "POST",
       "body": {
@@ -26,18 +28,16 @@
     }
   },
   {
-    "Name": "List history API",
+    "Name": "List booking history API (Student Only)",
+    "Endpoint": "http://localhost:8000/booking/history",
     "Request": {
       "method": "GET",
+      "headers": {
+        "Authorization": "Bearer Token"
+      }
+    },
+    "Response": {
       "body": [
-        {
-          "reservationId": "",
-          "startTime": "DateTime with format YYYY-MM-DD HH:mm:ss",
-          "endTime": "DateTime with format YYYY-MM-DD HH:mm:ss",
-          "building": "",
-          "floor": "",
-          "roomName": ""
-        },
         {
           "reservationId": "",
           "startTime": "DateTime with format YYYY-MM-DD HH:mm:ss",
@@ -50,9 +50,15 @@
     }
   },
   {
-    "Name": "Detail one history API",
+    "Name": "Detail specific booking history API (Student Only)",
+    "Endpoint": "http://localhost:8000/booking/history/:id",
     "Request": {
       "method": "GET",
+      "headers": {
+        "Authorization": "Bearer Token"
+      }
+    },
+    "Response": {
       "body": {
         "reservationId": "",
         "reservedTimeAt": "DateTime with format YYYY-MM-DD HH:mm:ss",

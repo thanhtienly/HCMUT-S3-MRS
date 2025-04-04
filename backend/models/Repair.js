@@ -14,8 +14,14 @@ const Repair = sequelize.define(
       allowNull: false,
     },
     staffId: {
-      type: DataTypes.UUID,
+      type: DataTypes.STRING,
       allowNull: false,
+      references: {
+        model: "staffs",
+        key: "staffId",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "CASCADE",
     },
     from: {
       type: DataTypes.BIGINT,

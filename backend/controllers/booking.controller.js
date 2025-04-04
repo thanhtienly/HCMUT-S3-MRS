@@ -1,4 +1,7 @@
-const { getStudentReservations, getReservationById } = require("../services/management.service");
+const {
+  getStudentReservations,
+  getReservationById,
+} = require("../services/booking.service");
 const moment = require("moment-timezone");
 
 const convertToUTC7 = (timestamp) => {
@@ -9,12 +12,18 @@ const getListReservationHistory = async (req, res) => {
   try {
     const studentId = req.user.studentId;
     if (!studentId) {
-      return res.status(401).json({ success: false, message: "You need to log in!" });
+      return res
+        .status(401)
+        .json({ success: false, message: "You need to log in!" });
     }
 
     const reservations = await getStudentReservations(studentId);
     if (!reservations || reservations.length === 0) {
-      return res.status(200).json({ success: true, message: "Student has no reservations", data: [] });
+      return res.status(200).json({
+        success: true,
+        message: "Student has no reservations",
+        data: [],
+      });
     }
 
     // Làm phẳng dữ liệu
@@ -40,7 +49,9 @@ const getReservationDetail = async (req, res) => {
     const reservation = await getReservationById(id);
 
     if (!reservation) {
-      return res.status(404).json({ success: false, message: "Reservation not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Reservation not found" });
     }
 
     // Làm phẳng dữ liệu
