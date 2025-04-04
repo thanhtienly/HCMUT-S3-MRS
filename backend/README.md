@@ -18,10 +18,6 @@ JWT_REFRESH_TOKEN_LIFETIME=<br>
 
 với các giá trị của port, mysql_host,... là các giá trị mong muốn của bạn
 
-# Tạo database
-
-Trong BTL này, DBMS được sử dụng là MySQL. Để chạy được server, cần phải khởi tạo database với tên là giá trị của "MYSQL_DATABASE" trong file .env
-
 ## Cài đặt các thư viện
 
 dùng lệnh "cd backend" để vào thư mục làm việc của backend, sau đó sử dụng lệnh "npm install" để cài đặt các thư viện có liên quan

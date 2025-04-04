@@ -8,29 +8,29 @@ const MYSQL_USERNAME = process.env.MYSQL_USERNAME;
 const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD;
 const MYSQL_DATABASE = process.env.MYSQL_DATABASE;
 
-// Define sequelize connection
-const sequelize = new Sequelize(
-  MYSQL_DATABASE,
-  MYSQL_USERNAME,
-  MYSQL_PASSWORD,
-  {
-    host: MYSQL_HOST,
-    port: MYSQL_PORT,
-    dialect: "mysql",
-    dialectOptions: {
-      connectTimeout: 60000,
-    },
-    logging: false,
+const sequelizeOption = {
+  username: MYSQL_USERNAME,
+  password: MYSQL_PASSWORD,
+  host: MYSQL_HOST,
+  port: MYSQL_PORT,
+  dialect: "mysql",
+  logging: false,
+};
+
+async function initDB() {
+  const sequelize = new Sequelize(sequelizeOption);
+  try {
+    await sequelize.query(`CREATE DATABASE IF NOT EXISTS ${MYSQL_DATABASE}`);
+  } catch (error) {
+    console.log("Error with creating database");
   }
-);
+}
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log("Connect Mysql successfully!");
-  })
-  .catch((err) => {
-    console.error("Connect Error!", err);
-  });
+initDB();
 
-module.exports = { sequelize };
+const sequelize = new Sequelize({
+  ...sequelizeOption,
+  database: MYSQL_DATABASE,
+});
+
+module.exports = { initDB, sequelize };

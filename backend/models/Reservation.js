@@ -9,7 +9,7 @@ const Reservation = sequelize.define(
       allowNull: false,
       primaryKey: true,
     },
-    tableId: {
+    roomId: {
       type: DataTypes.UUID,
       allowNull: false,
     },
