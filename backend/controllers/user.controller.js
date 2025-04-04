@@ -124,6 +124,7 @@ const logInStudent = async (req, res) => {
     {
       userId: user["id"],
       role: user["role"],
+      studentId: profile["studentId"],
       firstName: profile["firstName"],
       lastName: profile["lastName"],
     },
@@ -137,6 +138,7 @@ const logInStudent = async (req, res) => {
     {
       userId: user["id"],
       role: user["role"],
+      studentId: profile["studentId"],
       firstName: profile["firstName"],
       lastName: profile["lastName"],
     },
@@ -152,4 +154,15 @@ const logInStudent = async (req, res) => {
   });
 };
 
-module.exports = { signUpStudent, logInStudent };
+const getBookingHistory = async (req, res) => {
+  const user = req["user"];
+
+  res.json({
+    data: {
+      userId: "1",
+      email: "tien.lythanh@hcmut.edu.vn",
+    },
+  });
+};
+
+module.exports = { signUpStudent, logInStudent, getBookingHistory };
