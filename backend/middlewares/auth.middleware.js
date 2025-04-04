@@ -45,4 +45,14 @@ const authorizedTokenMiddleware = (req, res, next) => {
   );
 };
 
-module.exports = { authorizedTokenMiddleware };
+const isStudentMiddleware = (req, res, next) => {
+  if (req.user.role !== "Student") {
+    return res.status(403).json({
+      error: 403,
+      message: `User is '${req.user.role}'. Only students can perform this action.`,
+    });
+  }
+  next();
+};
+
+module.exports = { authorizedTokenMiddleware, isStudentMiddleware };

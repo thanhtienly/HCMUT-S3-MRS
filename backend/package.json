@@ -17,5 +17,8 @@
     "nodemon": "^3.1.9",
     "sequelize": "^6.37.6",
     "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
   }
 }
