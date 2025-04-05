@@ -17,8 +17,8 @@ const Reservation = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
       references: {
-        model: "students",  
-        key: "studentId",  
+        model: "students",
+        key: "studentId",
       },
       onUpdate: "CASCADE",
       onDelete: "CASCADE",
@@ -38,6 +38,10 @@ const Reservation = sequelize.define(
     secret: {
       type: DataTypes.STRING,
       allowNull: true,
+    },
+    state: {
+      type: DataTypes.ENUM(["Booked", "Cancelled", "Expired"]),
+      allowNull: false,
     },
   },
   {
