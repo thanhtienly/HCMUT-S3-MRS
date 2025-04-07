@@ -1,0 +1,16 @@
+
+server:
+  port: 8080
+spring:
+  application:
+    name: HcmutS3MRS-service
+  datasource:
+    url: "jdbc:mysql://localhost:3315/hcmutS3MRS?createDatabaseIfNotExist=true"
+    driverClassName: "com.mysql.cj.jdbc.Driver"
+    username: root
+    password: 12345678
+  jpa:
+    hibernate:
+      ddl-auto: update
+      format_sql: true
+    show-sql: true

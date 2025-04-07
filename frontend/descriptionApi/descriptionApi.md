@@ -101,7 +101,7 @@ endTime: "2025-04-25T15:30:00",
 
 ## Api need
 
-- 1. get add room (description: get list of all room system have)
+- 1. get all room (description: get list of all room system have)
      Data response [
      {
      id: "1",
