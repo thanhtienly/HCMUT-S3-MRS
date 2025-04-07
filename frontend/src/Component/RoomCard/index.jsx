@@ -27,14 +27,13 @@ function RoomCard({ data }) {
           <div className={cx("wrapper_title_room")}>
             <span className={cx("type_room")}>
               {" "}
-              Loại phòng: {typeTable[data.type]}
+              Phòng: {typeTable[data.type]}
             </span>
             <span className={cx("wrapper_maxSeat")}>
-              {""}
-              {data.maxSeat} |
+              Số chỗ tối đa: {data.maxSeat}
             </span>
 
-            <span className={cx("wrapper_seat")}>{data.currentSeat}</span>
+            {/* <span className={cx("wrapper_seat")}>{data.currentSeat}</span> */}
           </div>
           <div className={cx("wrapper_building_floor")}>
             <span className={cx("inforRoom inforRoom_building")}>
@@ -51,7 +50,9 @@ function RoomCard({ data }) {
           <div className={cx("wrapper_state")}>
             {" "}
             <div className={cx("wrapper_display_state")}>
-              <span className={cx("state_room")}> {stateRoom[data.state]}</span>
+              {/* <span className={cx("state_room")}> {stateRoom[data.state]}</span> */}
+              <span className={cx("wrapper_description_title")}>Mô tả</span>:{" "}
+              {data.description}
             </div>
           </div>
         </div>

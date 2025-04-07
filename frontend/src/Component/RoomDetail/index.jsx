@@ -64,9 +64,16 @@ function Product() {
             </div>
             <div className="col-md-6">
               <div className="product-details">
-                <h2 className="product-title">{typeTable[roomDetail.type]}</h2>
+                <h2 className="product-title">
+                  {" "}
+                  Loại phòng: {typeTable[roomDetail.type]}
+                </h2>
                 {/* <p className="product-category">{product.category}</p> */}
                 <div className="product-rating">
+                  <span className="wrapper_maxSeat_room">
+                    {" "}
+                    Số chỗ tối đa: {roomDetail.maxSeat}{" "}
+                  </span>
                   Rating: 5/5 <Star />
                   <i className="fa fa-star rating-icon"></i>
                 </div>

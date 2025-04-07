@@ -165,6 +165,13 @@
 }
 
 // Loading Skeleton Customization
+
+.product-page .wrapper_maxSeat_room {
+  font-size: 23px;
+  font-weight: 500;
+  color: var(--primary);
+  padding-right: 10px;
+}
 .product-skeleton {
   .react-loading-skeleton {
     margin-bottom: 1rem;

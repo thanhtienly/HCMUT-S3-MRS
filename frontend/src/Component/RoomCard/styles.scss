@@ -4,7 +4,7 @@
 .wrapper_roomCard {
   // border: 2px solid var(--primary);
   height: 350px;
-  border-radius: 8px;
+  border-radius: 15px;
   margin-bottom: 25px;
   position: relative;
   transition: transform 0.3s ease-in-out;
@@ -28,6 +28,8 @@
 }
 .wrapper_content {
   background-color: rgb(237, 235, 235);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 .wrapper_title_room {
   display: flex;
@@ -40,6 +42,7 @@
 }
 .wrapper_maxSeat {
   padding-top: 6px;
+  padding-right: 14px;
   color: var(--primary);
   font-weight: 500;
 }
@@ -53,9 +56,8 @@
 
 .inforRoom {
   padding-left: 14px;
-}
-
-.inforRoom {
+  color: rgb(91, 199, 14);
+  font-weight: 500;
 }
 
 .wrapper_roomNumber {
@@ -63,16 +65,25 @@
 
 .roomNumber {
   padding-left: 14px;
+  font-weight: 500;
+  color: var(--primary);
 }
 .wrapper_state {
   display: flex;
   justify-content: flex-end;
 }
 .wrapper_display_state {
-  margin: 0 14px 7px 0;
-  padding: 8px 25px;
-  background-color: rgb(177, 255, 60);
-  border-radius: 13px;
+  // margin: 0 14px 7px 0;
+  // padding: 8px 25px;
+
+  // border-radius: 13px;
+  padding: 0 14px 10px 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wrapper_description_title {
+  font-weight: 500;
 }
 
 .state_room {

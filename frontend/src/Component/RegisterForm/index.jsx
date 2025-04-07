@@ -3,22 +3,38 @@ import classNames from "classnames/bind";
 import { Icon } from "lucide-react";
 import { useState } from "react";
 import { FailIcon, IconClose } from "../Icon/Icon";
-
+import DataFake from "../../pages/Menu/DataFake";
 import { useNavigate } from "react-router-dom";
+import ReactPaginate from "react-paginate";
 const cx = classNames.bind(styles);
-const TimeResigter = [
-  { id: 1, startTime: "08:00", endTime: "09:30" },
-  { id: 2, startTime: "10:00", endTime: "12:30" },
-  { id: 3, startTime: "18:00", endTime: "19:30" },
-];
+const DataTemporary = DataFake[0];
+const TimeResigter = DataTemporary.orders;
+
 function RegisterForm({ onClickCloseRegisterForm }) {
   const navigate = useNavigate();
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [password, setPassword] = useState(null);
+  const [confirmPassword, setConfirmPassword] = useState(null);
   const [messageRegister, setMessageRegister] = useState(false);
+  const [orderTime, setOrderTime] = useState(TimeResigter);
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 3;
+  const [currentOrderTime, setCurrentOrderTime] = useState(
+    orderTime.slice(0, 0 + itemsPerPage)
+  );
+
+  // const offset = currentPage * itemsPerPage;
+  // const currenOrderTime = orderTime.slice(offset, offset + itemsPerPage);
+  const totalPages = Math.ceil(orderTime.length / itemsPerPage);
   const handleValidRegisterForm = () => {
     return false;
+  };
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+    const offset = selected * itemsPerPage;
+    setCurrentOrderTime(orderTime.slice(offset, offset + itemsPerPage));
   };
   const handleOnClickRoomRegister = (e) => {
     if (handleValidRegisterForm()) {
@@ -27,6 +43,7 @@ function RegisterForm({ onClickCloseRegisterForm }) {
     } else {
       e.preventDefault();
       setMessageRegister(true);
+      // setMessageRegister(false);
     }
   };
   return (
@@ -74,6 +91,28 @@ function RegisterForm({ onClickCloseRegisterForm }) {
               required
             />
           </div>
+          <div className={cx("form-group")}>
+            <label htmlFor="password">Tạo mã mời</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className={cx("form-group")}>
+            <label htmlFor="confirmPassword">Xác nhận</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
+
           <button
             type="submit"
             class="btn-submit"
@@ -84,12 +123,43 @@ function RegisterForm({ onClickCloseRegisterForm }) {
           <div class={cx("reserved-times")}>
             <h3>Danh sách giờ Đã Được Đặt</h3>
             <ul id={cx("reserved-list")}>
-              {TimeResigter.map((time) => (
-                <li key={time.id}>
-                  {time.startTime} - {time.endTime}
+              {currentOrderTime.map((order, index) => (
+                <li className={cx("wrapper_time_room")} key={index}>
+                  {order.startTime.split("T")[1].slice(0, 5)} -{" "}
+                  {order.endTime.split("T")[1].slice(0, 5)}
+                  {DataTemporary.type !== 0 && (
+                    <>
+                      <span className={cx("wrapper_currentSeat_room")}>
+                        Số chỗ:
+                        <span className={cx("wrapper_currentSeat_roomDetail")}>
+                          {" "}
+                          {order.currentSeat}
+                        </span>
+                        |
+                        <span className={cx("wrapper_maxSeat_roomDetail")}>
+                          {DataFake[0].maxSeat}
+                        </span>
+                      </span>
+                      <span className={cx("wrapper_join_room")}>
+                        {" "}
+                        Tham gia{" "}
+                      </span>
+                    </>
+                  )}
                 </li>
               ))}
             </ul>
+            <ReactPaginate
+              previousLabel={"Trang trước"}
+              nextLabel={"Trang sau"}
+              breakLabel={"..."}
+              pageCount={totalPages}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={3}
+              onPageChange={handlePageClick}
+              containerClassName={"pagination"}
+              activeClassName={"active"}
+            />
           </div>
         </form>
       </div>
