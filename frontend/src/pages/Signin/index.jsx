@@ -11,10 +11,10 @@ const Signin = (props) => {
     // You'll update this function later...
     console.log(username);
     console.log(password);
-    const url = "http://localhost:8080/thongTin/authenticate";
+    const url = "http://localhost:8080/user/authenticate";
     const payload = {
-      tenDangNhap: username,
-      matKhau: password,
+      userName: username,
+      password: password,
     };
     console.log(payload);
     fetch(url, {
@@ -30,16 +30,14 @@ const Signin = (props) => {
         if (data["message"] === "success") {
           localStorage.setItem("login", "success");
           // localStorage.setItem('maKhachHang', data['entity']['maKhachHang']);
-          localStorage.setItem(
-            "name",
-            data["entity"]["ho"] + " " + data["entity"]["ten"]
-          );
           localStorage.setItem("isLogin", true);
-          localStorage.setItem("cccd", data["entity"].cccd);
+          localStorage.setItem("idUser", data["entity"].idUser);
+          localStorage.setItem("name", data["entity"].fullName);
           navigate("/");
         } else {
           localStorage.setItem("login", "fail");
           message.error("Sai tên đăng nhập hoặc mật khẩu!");
+          alert("Sai tên đăng nhập hoặc mật khẩu!");
         }
       })
       .catch((err) => {

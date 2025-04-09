@@ -11,6 +11,7 @@ import Menu from "../pages/Menu";
 import RoomDetail from "../Component/RoomDetail";
 import Success from "../pages/Message/Success";
 import Report from "../layout/MessageReport/Report";
+import Profile from "../pages/UserProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       { path: "menu/roomDetail/:id", element: <RoomDetail /> },
       { path: "register/successful", element: <Success /> },
       { path: "contact/report/successful", element: <Report /> },
+      { path: "profile", element: <Profile /> },
     ],
   },
 ]);

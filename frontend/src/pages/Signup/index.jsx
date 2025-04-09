@@ -7,10 +7,32 @@ import "./styles.scss";
 import signup from "../../assets/bku05.jpg";
 
 // Schema validation với Yup
+// const signupSchema = Yup.object().shape({
+//   mssv: Yup.string()
+//     .length(7, "Mã số sinh viên phải có 7 ký tự")
+//     .required("Vui lòng nhập mã số sinh viên công dân"),
+//   username: Yup.string().required("Tên đăng nhập không được để trống"),
+//   firstname: Yup.string().required("Tên không được để trống"),
+//   lastname: Yup.string().required("Họ không được để trống"),
+//   email: Yup.string()
+//     .email("Email không hợp lệ")
+//     .required("Email không được để trống"),
+//   phone: Yup.string()
+//     .matches(/^\d+$/, "Số điện thoại chỉ chứa chữ số")
+//     .required("Số điện thoại không được để trống"),
+//   gender: Yup.string().required("Vui lòng chọn giới tính"),
+//   birthdate: Yup.date()
+//     .max(new Date(), "Ngày sinh không hợp lệ")
+//     .required("Vui lòng nhập ngày sinh"),
+//   password: Yup.string()
+//     .min(6, "Mật khẩu phải có ít nhất 6 ký tự")
+//     .required("Mật khẩu không được để trống"),
+//   reEnterPassword: Yup.string()
+//     .oneOf([Yup.ref("password")], "Mật khẩu xác nhận không khớp")
+//     .required("Vui lòng nhập lại mật khẩu"),
+// });
 const signupSchema = Yup.object().shape({
-  mssv: Yup.string()
-    .length(7, "Mã số sinh viên phải có 7 ký tự")
-    .required("Vui lòng nhập mã số sinh viên công dân"),
+  mssv: Yup.string().length(7, "Mã số sinh viên phải có 7 ký tự"),
   username: Yup.string().required("Tên đăng nhập không được để trống"),
   firstname: Yup.string().required("Tên không được để trống"),
   lastname: Yup.string().required("Họ không được để trống"),
@@ -47,19 +69,19 @@ const Signup = () => {
     console.log("Form Data:", data);
 
     const payload = {
-      tenDangNhap: data.username,
-      matKhau: data.password,
-      mssv: data.mssv,
-      ho: data.lastname,
-      ten: data.firstname,
-      ngaySinh: data.birthdate,
+      userName: data.username,
+      password: data.password,
+      fullName: data.lastname,
+      studentCode: data.mssv,
+      name: data.firstname,
+      dateOfBirth: data.birthdate,
       email: data.email,
-      gioiTinh: data.gender,
-      soDienThoai: data.phone,
+      gender: data.gender,
+      phoneNumber: data.phone,
       maTaiKhoan: "user",
     };
 
-    fetch("http://localhost:8080/thongTin/create", {
+    fetch("http://localhost:8080/user/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
