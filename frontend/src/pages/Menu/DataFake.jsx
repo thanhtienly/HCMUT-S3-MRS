@@ -509,7 +509,493 @@ const dataRoom = [
   {
     id: "1",
     pictureLink: "",
-    building: 2,
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
+    floor: 2,
+    roomNumber: "201",
+    maxSeat: 1,
+    type: 0,
+    description:
+      "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện ",
+    orders: [
+      {
+        roomOwner: "Nguyễn Thùy Linh ",
+        startTime: "2025-04-25T10:30:00",
+        endTime: "2025-04-25T12:30:00",
+      },
+    ],
+  },
+  {
+    id: "1",
+    pictureLink: "",
+    building: 0,
     floor: 2,
     roomNumber: "201",
     maxSeat: 1,

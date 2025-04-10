@@ -13,8 +13,85 @@ const cx = classNames.bind(styles);
   type: 0 tu hoc, 1 nhom  ,2 memtoring
   state 0 trống, state 1 có người
 */
-const typeTable = ["tự học", "học nhóm", "mentoring"];
+function removeVietnameseTones(str) {
+  return str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // bỏ dấu
+    .replace(/đ/g, "d")
+    .replace(/Đ/g, "D");
+}
+
+// function parseSearchQuery(query) {
+//   const result = {};
+
+//   // Chuyển chuỗi về dạng thường để tránh sai chính tả do viết hoa
+//   const lower = query.toLowerCase();
+
+//   // Tìm "tầng: số"
+//   const floorMatch = lower.match(/tầng\s*:?(\d+)/);
+//   if (floorMatch) result.floor = parseInt(floorMatch[1]);
+
+//   // Tìm "phòng: số"
+//   const roomMatch = lower.match(/phòng\s*:?(\d+)/);
+//   if (roomMatch) result.roomNumber = roomMatch[1]; // giữ là string nếu roomNumber là string
+
+//   // Tìm "tòa: số"
+//   // const buildingMatch = lower.match(/tòa\s*:?(\d+)/);
+//   // if (buildingMatch) result.building = parseInt(buildingMatch[1]);
+
+//   // Tìm "ghế: số" hoặc "sức chứa: số"
+//   const seatMatch = lower.match(/(ghế|sức chứa)\s*:?(\d+)/);
+//   if (seatMatch) result.maxSeat = parseInt(seatMatch[2]);
+
+//   // Tìm "loại: số"
+//   const typeMatch = lower.match(/loại\s*:?(\d+)/);
+//   if (typeMatch) result.type = parseInt(typeMatch[1]);
+
+//   return result;
+// }
+function parseSearchQuery(query) {
+  const result = {};
+  const normalized = removeVietnameseTones(query.toLowerCase());
+
+  // Tầng
+  const floorMatch = normalized.match(/tang\s*:?\s*(\d+)/);
+  if (floorMatch) result.floor = parseInt(floorMatch[1]);
+
+  // Phòng
+  const roomMatch = normalized.match(/phong\s*:?\s*(\d+)/);
+  if (roomMatch) result.roomNumber = roomMatch[1];
+
+  // Tòa
+  const buildingMatch = normalized.match(/toa\s*:?\s*(\d+)/);
+  if (buildingMatch) result.building = parseInt(buildingMatch[1]);
+
+  // Ghế hoặc sức chứa
+  const seatMatch = normalized.match(/(ghe|suc chua)\s*:?\s*(\d+)/);
+  if (seatMatch) result.maxSeat = parseInt(seatMatch[2] || seatMatch[1]);
+
+  // Loại
+  const typeMatch = normalized.match(/loai\s*:?\s*(\d+)/);
+  if (typeMatch) result.type = parseInt(typeMatch[1]);
+
+  return result;
+}
+
+const typeTable = ["Tự học", "Học nhóm", "Mentoring"];
 const building = ["H1", "H2", "H3", "H6"];
+const listTypeTable = [
+  {
+    name: "Tự học",
+    id: 0,
+  },
+  {
+    name: "Học nhóm",
+    id: 1,
+  },
+  {
+    name: "Mentoring",
+    id: 2,
+  },
+];
 const listBuilding = [
   {
     name: "Toà nhà H1",
@@ -34,10 +111,16 @@ const listBuilding = [
   },
 ];
 function Menu() {
+  const [typeRoom, setTypeRoom] = useState(0);
   const [building, setBuiling] = useState(1);
   const [currentPage, setCurrentPage] = useState(0);
   const [dataRoom, setDataRoom] = useState(dataRoomList);
   const itemsPerPage = 8;
+  const [searchQuerry, setSearchQuerry] = useState("");
+  const [currentItems, setCurrentItems] = useState(
+    dataRoom.slice(0, 0 + itemsPerPage)
+  );
+
   useEffect(
     function () {
       let newDataRoom = dataRoomList.filter(
@@ -47,14 +130,84 @@ function Menu() {
     },
     [building]
   );
+  useEffect(
+    function () {
+      let newDataRoom = dataRoomList.filter((room) => room.type === typeRoom);
+      setDataRoom(newDataRoom);
+    },
+    [typeRoom]
+  );
   // Tính toán danh sách sản phẩm hiển thị
-  const offset = currentPage * itemsPerPage;
-  const currentItems = dataRoom.slice(offset, offset + itemsPerPage);
 
   // Xử lý khi đổi trang
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
+    const offset = selected * itemsPerPage;
+
+    setCurrentItems(dataRoom.slice(offset, offset + itemsPerPage));
   };
+  // useEffect(() => {
+  //   let listOfRoom = dataRoom.filter((room) => {
+  //     return room.name.toLowerCase().includes(searchQuerry.toLowerCase());
+  //   });
+  //   setCurrentItems(
+  //     listOfRoom.slice(
+  //       currentPage * itemsPerPage,
+  //       currentPage * itemsPerPage + itemsPerPage
+  //     )
+  //   );
+  // }, [searchQuerry]);
+  // useEffect(() => {
+  //   const query = searchQuerry.toLowerCase().trim();
+
+  //   const listOfRoom = dataRoom.filter((room) => {
+  //     // Chuyển tất cả các giá trị về string để so sánh
+  //     return (
+  //       room.building.toString().toLowerCase().includes(query) ||
+  //       room.floor.toString().toLowerCase().includes(query) ||
+  //       room.roomNumber.toString().toLowerCase().includes(query) ||
+  //       room.maxSeat.toString().toLowerCase().includes(query) ||
+  //       room.type.toString().toLowerCase().includes(query)
+  //     );
+  //   });
+
+  //   setCurrentItems(
+  //     listOfRoom.slice(
+  //       currentPage * itemsPerPage,
+  //       currentPage * itemsPerPage + itemsPerPage
+  //     )
+  //   );
+  // }, [searchQuerry, currentPage, dataRoom]);
+  useEffect(() => {
+    const filters = parseSearchQuery(searchQuerry);
+
+    const listOfRoom = dataRoom.filter((room) => {
+      // Kiểm tra từng trường nếu có trong filters
+      if (filters.floor !== undefined && room.floor !== filters.floor)
+        return false;
+      if (
+        filters.roomNumber !== undefined &&
+        room.roomNumber !== filters.roomNumber
+      )
+        return false;
+      if (filters.building !== undefined && room.building !== filters.building)
+        return false;
+      if (filters.maxSeat !== undefined && room.maxSeat !== filters.maxSeat)
+        return false;
+      if (filters.type !== undefined && room.type !== filters.type)
+        return false;
+
+      return true;
+    });
+
+    setCurrentItems(
+      listOfRoom.slice(
+        currentPage * itemsPerPage,
+        currentPage * itemsPerPage + itemsPerPage
+      )
+    );
+  }, [searchQuerry, currentPage, dataRoom]);
+
   return (
     // <div className={cx("container-fluid")}>
     <div
@@ -62,6 +215,7 @@ function Menu() {
       style={{
         backgroundImage: `url(${imageClassroom})`,
         backgroundSize: "cover",
+        minHeight: "100vh",
       }}
     >
       {/* Thanh tìm kiếm */}
@@ -71,6 +225,7 @@ function Menu() {
             className={cx("wrapper_search_inputComponent")}
             type="search"
             placeholder="Tìm kiếm phòng học..."
+            onChange={(e) => setSearchQuerry(e.target.value)}
           />
           <button className={cx("wrapper_button_search")} type="submit">
             <SearchIcon className={cx("wrapper_iconSearch")} />
@@ -117,6 +272,29 @@ function Menu() {
                     active_navBar: item.id === building,
                   })}
                   onClick={() => setBuiling(item.id)}
+                >
+                  {item.name}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className={cx("list-group")}>
+            <div className={cx("wrapper_navBar_item_title")}>
+              <IconMenu />
+              <span className={cx("wrapper_title_menu")}>Loại phòng học</span>
+            </div>
+          </div>
+
+          <div className={cx("list-group")}>
+            {listTypeTable.map(function (item, index) {
+              return (
+                <div
+                  key={index}
+                  className={cx("wrapper_navBar_item", {
+                    active_navBar: item.id === typeRoom,
+                  })}
+                  onClick={() => setTypeRoom(item.id)}
                 >
                   {item.name}
                 </div>
