@@ -11,6 +11,7 @@ const { findRoomById } = require("../services/room.service");
 const {
   mergeIndividualTimeSlot,
   mergeGroupBookedTimeSlot,
+  convertToUTC7,
 } = require("../utils/booking.utils");
 const bcrypt = require("bcrypt");
 
@@ -28,10 +29,9 @@ const getListReservationHistory = async (req, res) => {
       reservationList.map(async (reservation) => {
         var currentSeat = await countAllOverlapReservation({
           roomId: reservation.roomId,
-          startTime: reservation.from,
-          endTime: reservation.to,
+          startTime: new Date(reservation.from).getTime(),
+          endTime: new Date(reservation.to).getTime(),
         });
-
         reservation.currentSeat = currentSeat;
 
         return reservation;
@@ -140,9 +140,9 @@ const bookTimeSlot = async (req, res) => {
         id: reservation["id"],
         roomId: reservation["roomId"],
         userId: reservation["userId"],
-        from: reservation["from"],
-        to: reservation["to"],
-        reservedAt: reservation["reservedAt"],
+        from: convertToUTC7(reservation["from"]),
+        to: convertToUTC7(reservation["to"]),
+        reservedAt: convertToUTC7(reservation["reservedAt"]),
         state: reservation["state"],
       },
     });
@@ -209,7 +209,15 @@ const joinTimeSlot = async (req, res) => {
 
     res.json({
       success: true,
-      data: newReservation,
+      data: {
+        id: newReservation["id"],
+        roomId: newReservation["roomId"],
+        userId: newReservation["userId"],
+        from: convertToUTC7(newReservation["from"]),
+        to: convertToUTC7(newReservation["to"]),
+        reservedAt: convertToUTC7(newReservation["reservedAt"]),
+        state: newReservation["state"],
+      },
     });
   } catch (error) {
     res.status(500).json({

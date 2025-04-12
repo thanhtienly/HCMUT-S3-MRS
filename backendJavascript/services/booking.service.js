@@ -4,6 +4,7 @@ const { SelfStudyArea } = require("../models/SelfStudyArea");
 const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
+const { convertToUTC7 } = require("../utils/booking.utils");
 
 const getUserReservations = async (userId) => {
   var reservationList = await Reservation.findAll({
@@ -37,9 +38,9 @@ const getUserReservations = async (userId) => {
       roomNumber: reservation.Room?.name,
       description: reservation.Room?.description,
       maxSeat: reservation.Room?.capacity,
-      from: reservation.from,
-      to: reservation.to,
-      historyTime: reservation.reservedAt,
+      from: convertToUTC7(reservation.from),
+      to: convertToUTC7(reservation.to),
+      historyTime: convertToUTC7(reservation.reservedAt),
     };
   });
 
