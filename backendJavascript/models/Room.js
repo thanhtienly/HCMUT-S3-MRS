@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/database");
+const { roomType } = require("../config/constant");
 
 const Room = sequelize.define(
   "Room",
@@ -22,11 +23,15 @@ const Room = sequelize.define(
       allowNull: false,
     },
     type: {
-      type: DataTypes.ENUM(["Mentoring", "Group", "Individual"]),
+      type: DataTypes.ENUM(Object.values(roomType)),
       allowNull: false,
     },
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    description: {
+      type: DataTypes.TEXT,
       allowNull: true,
     },
   },

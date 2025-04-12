@@ -1,80 +1,9 @@
-const { CheckIn } = require("../models/CheckIn");
-const { Feedback } = require("../models/Feedback");
-const { Manager } = require("../models/Manager");
-const { Repair } = require("../models/Repair");
 const { Reservation } = require("../models/Reservation");
 const { Room } = require("../models/Room");
 const { SelfStudyArea } = require("../models/SelfStudyArea");
-const { Staff } = require("../models/Staff");
-const { Student } = require("../models/Student");
-const { User } = require("../models/User");
-const bcrypt = require("bcrypt");
+const { roomType } = require("../config/constant");
 
 async function seed() {
-  await User.bulkCreate([
-    {
-      id: "1",
-      email: "student1@hcmut.edu.vn",
-      password: bcrypt.hashSync("Taomatkhau", 10),
-      role: "Student",
-    },
-    {
-      id: "2",
-      email: "manager@hcmut.edu.vn",
-      password: bcrypt.hashSync("Taomatkhau", 10),
-      role: "Manager",
-    },
-    {
-      id: "3",
-      email: "staff@hcmut.edu.vn",
-      password: bcrypt.hashSync("Taomatkhau", 10),
-      role: "Staff",
-    },
-    {
-      id: "4",
-      email: "student2@hcmut.edu.vn",
-      password: bcrypt.hashSync("Taomatkhau", 10),
-      role: "Student",
-    },
-  ]);
-
-  await Student.bulkCreate([
-    {
-      userId: "1",
-      studentId: "2212345",
-      gender: "Nam",
-      firstName: "Test",
-      lastName: "Test",
-      phone: "0368832210",
-      birthday: "2004-01-01",
-    },
-    {
-      userId: "4",
-      studentId: "2256789",
-      gender: "Nữ",
-      firstName: "Test",
-      lastName: "Test",
-      phone: "0796850161",
-      birthday: "2004-01-01",
-    },
-  ]);
-
-  await Manager.create({
-    userId: "2",
-    managerId: "1234",
-    gender: "Nữ",
-    firstName: "Test",
-    lastName: "Test",
-  });
-
-  await Staff.create({
-    userId: "3",
-    staffId: "56789",
-    gender: "Nam",
-    firstName: "Test",
-    lastName: "Test",
-  });
-
   await SelfStudyArea.create({
     id: "1",
     building: "H6",
@@ -87,24 +16,30 @@ async function seed() {
       ssaId: "1",
       name: "H6-101",
       capacity: 4,
-      type: "Mentoring",
+      type: roomType.mentoring,
       image: "",
+      description:
+        "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện",
     },
     {
       id: "2",
       ssaId: "1",
       name: "H6-102",
       capacity: 10,
-      type: "Group",
+      type: roomType.group,
       image: "",
+      description:
+        "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện",
     },
     {
       id: "3",
       ssaId: "1",
       name: "H6-103",
       capacity: 1,
-      type: "Individual",
+      type: roomType.individual,
       image: "",
+      description:
+        "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện",
     },
   ]);
 
@@ -112,55 +47,81 @@ async function seed() {
     {
       id: "1",
       roomId: "1",
-      studentId: "2212345",
-      from: new Date().getTime() + 24 * 60 * 60 * 1000,
-      to: new Date().getTime() + 24 * 60 * 60 * 1000 + 60 * 60 * 1000,
+      userId: "1",
+      from: new Date("2025-04-14T07:30:00").getTime(),
+      to: new Date("2025-04-14T07:49:00").getTime(),
       reservedAt: new Date().getTime(),
       secret: "secret1",
     },
     {
       id: "2",
+      roomId: "1",
+      userId: "2",
+      from: new Date("2025-04-14T09:30:00").getTime(),
+      to: new Date("2025-04-14T10:03:00").getTime(),
+      reservedAt: new Date().getTime() + 100000,
+      secret: "secret1",
+    },
+    {
+      id: "3",
+      roomId: "1",
+      userId: "3",
+      from: new Date("2025-04-14T14:30:00").getTime(),
+      to: new Date("2025-04-14T16:50:00").getTime(),
+      reservedAt: new Date().getTime() + 1000000,
+      secret: "secret1",
+    },
+    {
+      id: "4",
       roomId: "2",
-      studentId: "2212345",
-      from: new Date().getTime() + 24 * 60 * 60 * 1000,
-      to: new Date().getTime() + 24 * 60 * 60 * 1000 + 60 * 60 * 1000,
+      userId: "4",
+      from: new Date("2025-04-15T07:30:00").getTime(),
+      to: new Date("2025-04-15T07:49:00").getTime(),
       reservedAt: new Date().getTime(),
       secret: "secret2",
     },
     {
-      id: "3",
+      id: "5",
       roomId: "3",
-      studentId: "2212345",
-      from: new Date().getTime() + 24 * 60 * 60 * 1000,
-      to: new Date().getTime() + 24 * 60 * 60 * 1000 + 60 * 60 * 1000,
+      userId: "5",
+      from: new Date("2025-04-15T09:30:00").getTime(),
+      to: new Date("2025-04-15T10:03:00").getTime(),
       reservedAt: new Date().getTime(),
       secret: "secret3",
-    },
-
-    {
-      id: "4",
-      roomId: "1",
-      studentId: "2256789",
-      from: new Date().getTime() - 24 * 60 * 60 * 1000,
-      to: new Date().getTime() - 24 * 60 * 60 * 1000 + 60 * 60 * 1000,
-      reservedAt: new Date().getTime() - 2 * 24 * 60 * 60 * 1000,
-      secret: "secret4",
-    },
-    {
-      id: "5",
-      roomId: "2",
-      studentId: "2256789",
-      from: new Date().getTime() - 24 * 60 * 60 * 1000,
-      to: new Date().getTime() - 24 * 60 * 60 * 1000 + 60 * 60 * 1000,
-      reservedAt: new Date().getTime() - 2 * 24 * 60 * 60 * 1000,
-      secret: "secret5",
     },
     {
       id: "6",
       roomId: "3",
-      studentId: "2256789",
-      from: new Date().getTime() - 24 * 60 * 60 * 1000,
-      to: new Date().getTime() - 24 * 60 * 60 * 1000 + 60 * 60 * 1000,
+      userId: "6",
+      from: new Date("2025-04-15T14:30:00").getTime(),
+      to: new Date("2025-04-15T16:50:00").getTime(),
+      reservedAt: new Date().getTime(),
+      secret: "secret3",
+    },
+    {
+      id: "7",
+      roomId: "1",
+      userId: "7",
+      from: new Date("2025-04-16T07:30:00").getTime(),
+      to: new Date("2025-04-16T07:49:00").getTime(),
+      reservedAt: new Date().getTime() - 2 * 24 * 60 * 60 * 1000,
+      secret: "secret4",
+    },
+    {
+      id: "8",
+      roomId: "2",
+      userId: "10",
+      from: new Date("2025-04-16T09:30:00").getTime(),
+      to: new Date("2025-04-16T10:03:00").getTime(),
+      reservedAt: new Date().getTime() - 2 * 24 * 60 * 60 * 1000,
+      secret: "secret5",
+    },
+    {
+      id: "9",
+      roomId: "3",
+      userId: "11",
+      from: new Date("2025-04-16T14:30:00").getTime(),
+      to: new Date("2025-04-16T16:50:00").getTime(),
       reservedAt: new Date().getTime() - 2 * 24 * 60 * 60 * 1000,
       secret: "secret6",
     },
