@@ -40,7 +40,7 @@ $ git clone https://github.com/thanhtienly/HCMUT-S3-MRS.git
 You can follow the README.md file under each folder to run its app. 
 
 
-## 📅 Easier way to run
+## 📌 Easier way to run
 You can run the microservices and website with UI by using Docker with docker-compose.yml file
 
 The docker-compose.yml file will be provided soon.
