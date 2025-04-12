@@ -44,14 +44,17 @@ const getRoomDetailById = async (req, res) => {
   }
 
   return res.json({
-    id: roomDetail.id,
-    pictureLink: roomDetail.image,
-    building: roomDetail.SelfStudyArea?.building,
-    floor: roomDetail.SelfStudyArea?.floor,
-    roomNumber: roomDetail.name,
-    maxSeat: roomDetail.capacity,
-    type: roomDetail.type,
-    description: roomDetail.description,
+    success: true,
+    data: {
+      id: roomDetail.id,
+      pictureLink: roomDetail.image,
+      building: roomDetail.SelfStudyArea?.building,
+      floor: roomDetail.SelfStudyArea?.floor,
+      roomNumber: roomDetail.name,
+      maxSeat: roomDetail.capacity,
+      type: roomDetail.type,
+      description: roomDetail.description,
+    },
   });
 };
 

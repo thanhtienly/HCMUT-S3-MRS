@@ -1,29 +1,43 @@
 [
   {
-    "Name": "Student Sign up API",
-    "Endpoint": "http://localhost:8000/user/student/sign-up",
+    "Name": "List all rooms API",
+    "Endpoint": "http://localhost:8000/room",
     "Request": {
-      "method": "POST",
-      "body": {
-        "email": "",
-        "password": "",
-        "studentId": "",
-        "firstName": "",
-        "lastName": "",
-        "birthday": "String with format YYYY-MM-DD",
-        "gender": "Enum('Nam', 'Nữ', 'Khác')",
-        "phone": ""
-      }
+      "method": "GET"
+    },
+    "ResponseBody": {
+      "success": "boolean",
+      "data": [
+        {
+          "id": "1",
+          "pictureLink": "",
+          "building": "H6",
+          "floor": "1",
+          "roomNumber": "H6-101",
+          "maxSeat": 4,
+          "type": "Mentoring",
+          "description": "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện"
+        }
+      ]
     }
   },
   {
-    "Name": "Student Log in API",
-    "Endpoint": "http://localhost:8000/user/student/log-in",
+    "Name": "Get detail of specific room",
+    "Endpoint": "http://localhost:8000/room/:roomId",
     "Request": {
-      "method": "POST",
-      "body": {
-        "email": "",
-        "password": ""
+      "method": "GET"
+    },
+    "ResponseBody": {
+      "success": "boolean",
+      "data": {
+        "id": "1",
+        "pictureLink": "",
+        "building": "H6",
+        "floor": "1",
+        "roomNumber": "H6-101",
+        "maxSeat": 4,
+        "type": "Mentoring",
+        "description": "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện"
       }
     }
   },
@@ -33,42 +47,102 @@
     "Request": {
       "method": "GET",
       "headers": {
-        "Authorization": "Bearer Token"
+        "user-id": ""
       }
     },
-    "Response": {
-      "body": [
+    "ResponseBody": {
+      "success": "boolean",
+      "data": [
         {
-          "reservationId": "",
-          "startTime": "DateTime with format YYYY-MM-DD HH:mm:ss",
-          "endTime": "DateTime with format YYYY-MM-DD HH:mm:ss",
-          "building": "",
-          "floor": "",
-          "roomName": ""
+          "id": "1",
+          "roomId": "1",
+          "building": "H6",
+          "floor": "1",
+          "roomNumber": "H6-101",
+          "description": "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện",
+          "maxSeat": 4,
+          "from": "2025-04-14T07:30",
+          "to": "2025-04-14T07:49",
+          "historyTime": "2025-04-13T02:09",
+          "currentSeat": 1
         }
       ]
     }
   },
   {
-    "Name": "Detail specific booking history API (Student Only)",
-    "Endpoint": "http://localhost:8000/booking/history/:id",
+    "Name": "Get Booked Time Slot",
+    "Endpoint": "http://localhost:8000/booking/time-slot?date=2025-04-14&roomId=1",
     "Request": {
-      "method": "GET",
+      "method": "GET"
+    },
+    "ResponseBody": {
+      "success": "boolean",
+      "data": [
+        {
+          "reservationId": "",
+          "startTime": "2025-04-14T07:30",
+          "endTime": "2025-04-14T07:49",
+          "maxSeat": 4,
+          "currentSeat": 1
+        }
+      ]
+    }
+  },
+  {
+    "Name": "Book a Time Slot",
+    "Endpoint": "http://localhost:8000/booking/time-slot",
+    "Request": {
+      "method": "POST",
       "headers": {
-        "Authorization": "Bearer Token"
+        "user-id": ""
+      },
+      "body": {
+        "date": "YYYY-MM-DD",
+        "roomId": "",
+        "from": "hh:mm",
+        "to": "hh:mm",
+        "secret": "Optional"
       }
     },
-    "Response": {
+    "ResponseBody": {
+      "success": "boolean",
+      "data": {
+        "id": "",
+        "roomId": "",
+        "userId": "",
+        "from": "2025-04-18T07:30",
+        "to": "2025-04-18T07:49",
+        "reservedAt": "2025-04-13T02:15",
+        "state": "Booked"
+      }
+    }
+  },
+  {
+    "Name": "Join a room API",
+    "Endpoint": "http://localhost:8000/booking/join",
+    "Request": {
+      "method": "POST",
+      "headers": {
+        "user-id": ""
+      },
       "body": {
         "reservationId": "",
-        "reservedTimeAt": "DateTime with format YYYY-MM-DD HH:mm:ss",
-        "startTime": "DateTime with format YYYY-MM-DD HH:mm:ss",
-        "endTime": "DateTime with format YYYY-MM-DD HH:mm:ss",
-        "building": "",
-        "floor": "",
-        "roomName": "",
-        "capacity": "integer",
-        "type": "Enum('Mentoring', 'Group', 'Individual')"
+        "secret": ""
+      }
+    },
+    "ResponseBody": {
+      "success": "boolean",
+      "data": {
+        "success": "boolean",
+        "data": {
+          "id": "",
+          "roomId": "",
+          "userId": "",
+          "from": "2025-04-18T07:30",
+          "to": "2025-04-18T07:49",
+          "reservedAt": "2025-04-13T02:18",
+          "state": "Booked"
+        }
       }
     }
   }
