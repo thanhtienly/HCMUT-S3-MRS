@@ -10,12 +10,6 @@ MYSQL_USERNAME=<br>
 MYSQL_PASSWORD=<br>
 MYSQL_DATABASE=<br>
 
-JWT_ACCESS_TOKEN_SECRET=<br>
-JWT_ACCESS_TOKEN_LIFETIME=<br>
-
-JWT_REFRESH_TOKEN_SECRET=<br>
-JWT_REFRESH_TOKEN_LIFETIME=<br>
-
 với các giá trị của port, mysql_host,... là các giá trị mong muốn của bạn
 
 ## Cài đặt các thư viện
