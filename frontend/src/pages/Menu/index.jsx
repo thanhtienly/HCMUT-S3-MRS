@@ -2,12 +2,12 @@ import styles from "./styles.scss";
 import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
 import SearchBar from "../../Component/SearchBar";
-import dataRoomList from "./DataFake";
+import dataRoomListFake from "./DataFake";
 import { IconMenu, MenuIcon, SearchIcon } from "../../Component/Icon/Icon";
 import RoomCard from "../../Component/RoomCard";
 import ReactPaginate from "react-paginate";
 import imageClassroom from "../../assets/bku07.jpg";
-
+import axios from "axios";
 const cx = classNames.bind(styles);
 /*
   type: 0 tu hoc, 1 nhom  ,2 memtoring
@@ -21,34 +21,6 @@ function removeVietnameseTones(str) {
     .replace(/Đ/g, "D");
 }
 
-// function parseSearchQuery(query) {
-//   const result = {};
-
-//   // Chuyển chuỗi về dạng thường để tránh sai chính tả do viết hoa
-//   const lower = query.toLowerCase();
-
-//   // Tìm "tầng: số"
-//   const floorMatch = lower.match(/tầng\s*:?(\d+)/);
-//   if (floorMatch) result.floor = parseInt(floorMatch[1]);
-
-//   // Tìm "phòng: số"
-//   const roomMatch = lower.match(/phòng\s*:?(\d+)/);
-//   if (roomMatch) result.roomNumber = roomMatch[1]; // giữ là string nếu roomNumber là string
-
-//   // Tìm "tòa: số"
-//   // const buildingMatch = lower.match(/tòa\s*:?(\d+)/);
-//   // if (buildingMatch) result.building = parseInt(buildingMatch[1]);
-
-//   // Tìm "ghế: số" hoặc "sức chứa: số"
-//   const seatMatch = lower.match(/(ghế|sức chứa)\s*:?(\d+)/);
-//   if (seatMatch) result.maxSeat = parseInt(seatMatch[2]);
-
-//   // Tìm "loại: số"
-//   const typeMatch = lower.match(/loại\s*:?(\d+)/);
-//   if (typeMatch) result.type = parseInt(typeMatch[1]);
-
-//   return result;
-// }
 function parseSearchQuery(query) {
   const result = {};
   const normalized = removeVietnameseTones(query.toLowerCase());
@@ -95,30 +67,31 @@ const listTypeTable = [
 const listBuilding = [
   {
     name: "Toà nhà H1",
-    id: 0,
+    id: "H1",
   },
   {
     name: "Toà nhà H2",
-    id: 1,
+    id: "H2",
   },
   {
     name: "Toà nhà H3",
-    id: 2,
+    id: "H3",
   },
   {
     name: "Toà nhà H6",
-    id: 3,
+    id: "H6",
   },
 ];
 function Menu() {
   const [typeRoom, setTypeRoom] = useState(0);
-  const [building, setBuiling] = useState(1);
+  const [building, setBuilding] = useState("H1");
   const [currentPage, setCurrentPage] = useState(0);
-  const [dataRoom, setDataRoom] = useState(dataRoomList);
+  const [dataRoomList, setDataRoomList] = useState([]);
+  const [dataRoom, setDataRoom] = useState(dataRoomListFake);
   const itemsPerPage = 8;
   const [searchQuerry, setSearchQuerry] = useState("");
   const [currentItems, setCurrentItems] = useState(
-    dataRoom.slice(0, 0 + itemsPerPage)
+    dataRoomList.slice(0, 0 + itemsPerPage)
   );
 
   useEffect(
@@ -137,6 +110,35 @@ function Menu() {
     },
     [typeRoom]
   );
+
+  // Get data
+
+  const fetchRoomData = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/room");
+
+      setDataRoomList(response.data.data);
+      // console.log(response.data.data);
+    } catch (error) {
+      console.error("Error fetching branch data:", error);
+    }
+  };
+  useEffect(() => {
+    fetchRoomData();
+  }, []);
+  // useEffect(() => {
+  //   const url = "http://localhost:8000/room";
+  //   fetch(url, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => setDataRoomList(data));
+  // }, []);
+
   // Tính toán danh sách sản phẩm hiển thị
 
   // Xử lý khi đổi trang
@@ -271,7 +273,7 @@ function Menu() {
                   className={cx("wrapper_navBar_item", {
                     active_navBar: item.id === building,
                   })}
-                  onClick={() => setBuiling(item.id)}
+                  onClick={() => setBuilding(item.id)}
                 >
                   {item.name}
                 </div>

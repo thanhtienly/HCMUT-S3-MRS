@@ -1,7 +1,7 @@
 import styles from "./styles.scss";
 import classNames from "classnames/bind";
 import { Icon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FailIcon, IconClose } from "../Icon/Icon";
 import DataFake from "../../pages/Menu/DataFake";
 import { useNavigate } from "react-router-dom";
@@ -10,44 +10,129 @@ const cx = classNames.bind(styles);
 const DataTemporary = DataFake[0];
 const TimeResigter = DataTemporary.orders;
 
-function RegisterForm({ onClickCloseRegisterForm }) {
+function RegisterForm({ onClickCloseRegisterForm, roomId, typeOfRoom }) {
   const navigate = useNavigate();
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
-  const [messageRegister, setMessageRegister] = useState(false);
-  const [orderTime, setOrderTime] = useState(TimeResigter);
+  const [messageRegister, setMessageRegister] = useState({ msg: "", id: 0 });
+  const [orderTime, setOrderTime] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
 
   const itemsPerPage = 3;
-  const [currentOrderTime, setCurrentOrderTime] = useState(
-    orderTime.slice(0, 0 + itemsPerPage)
-  );
+  const [currentOrderTime, setCurrentOrderTime] = useState([]);
   const [joinRoom, setJoinRoom] = useState(false);
   const [passwordJoin, setPasswordJoin] = useState("");
   // const offset = currentPage * itemsPerPage;
   // const currenOrderTime = orderTime.slice(offset, offset + itemsPerPage);
   const totalPages = Math.ceil(orderTime.length / itemsPerPage);
-  const handleValidRegisterForm = () => {
-    return false;
+  const triggerError = (msg) => {
+    setMessageRegister({ msg, id: Date.now() });
   };
+  const handleOnclickJoinRoom = (reservationId, secret) => {
+    const url = "http://localhost:8000/booking/join";
+    const payload = {
+      reservationId,
+      secret,
+    };
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+  };
+
+  useEffect(() => {
+    fetch(
+      `http://localhost:8000/booking/time-slot?date=${date}&roomId=${roomId}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        const state = data.success;
+        // console.log(roomId);
+        // console.log(data.data);
+
+        if (state && data.data !== undefined) {
+          setOrderTime(data.data.length !== 0 ? data.data : []);
+          setCurrentOrderTime(
+            data.data.length !== 0 ? data.data.slice(0, 0 + itemsPerPage) : []
+          );
+        } else if (data.data === undefined) {
+          setOrderTime([]);
+          setCurrentOrderTime([]);
+        }
+      });
+  }, [date, roomId]);
+  // const handleValidRegisterForm = () => {
+  //   return false;
+  // };
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
     const offset = selected * itemsPerPage;
     setCurrentOrderTime(orderTime.slice(offset, offset + itemsPerPage));
   };
   const handleOnClickRoomRegister = (e) => {
-    if (handleValidRegisterForm()) {
+    // if (handleValidRegisterForm()) {
+    //   e.preventDefault();
+    //   navigate("/register/successful");
+    // } else {
+    //   e.preventDefault();
+    //   setMessageRegister(true);
+    //   // setMessageRegister(false);
+    // }
+    const idUser = localStorage.getItem("idUser");
+    console.log("idUser");
+    console.log(idUser);
+    e.preventDefault();
+    if (idUser === null) {
       e.preventDefault();
-      navigate("/register/successful");
+      navigate("/signin");
     } else {
-      e.preventDefault();
-      setMessageRegister(true);
-      // setMessageRegister(false);
+      const bookTimeSlot = async () => {
+        const payload = {
+          date: date,
+          roomId: roomId,
+          from: startTime,
+          to: endTime,
+          secret: confirmPassword, //
+        };
+
+        try {
+          const response = await fetch(
+            "http://localhost:8000/booking/time-slot",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "user-id": idUser,
+              },
+              body: JSON.stringify(payload),
+            }
+          );
+
+          const result = await response.json();
+
+          const isReserved = "The room have been reserved";
+          if (result.message === isReserved) {
+            console.log("room has been reserved");
+            e.preventDefault();
+            triggerError("reserved");
+          } else if (result.success) {
+            e.preventDefault();
+            navigate("/register/successful");
+          }
+        } catch (error) {
+          console.error("⚠️ Lỗi mạng hoặc không kết nối được:", error);
+        }
+      };
+      bookTimeSlot();
     }
   };
+
   const handleOnClickJoinRoom = () => {
     setJoinRoom(true);
     // onClickCloseRegisterForm();
@@ -136,7 +221,7 @@ function RegisterForm({ onClickCloseRegisterForm }) {
                   <li className={cx("wrapper_time_room")} key={index}>
                     {order.startTime.split("T")[1].slice(0, 5)} -{" "}
                     {order.endTime.split("T")[1].slice(0, 5)}
-                    {DataTemporary.type !== 0 && (
+                    {typeOfRoom !== "Tự học" && (
                       <>
                         <span className={cx("wrapper_currentSeat_room")}>
                           Số chỗ:
@@ -148,7 +233,7 @@ function RegisterForm({ onClickCloseRegisterForm }) {
                           </span>
                           |
                           <span className={cx("wrapper_maxSeat_roomDetail")}>
-                            {DataFake[0].maxSeat}
+                            {order.maxSeat}
                           </span>
                         </span>
                         <span
@@ -177,7 +262,7 @@ function RegisterForm({ onClickCloseRegisterForm }) {
             </div>
           </form>
         </div>
-        {messageRegister && (
+        {messageRegister.msg && (
           <div className={cx("wrapper_message_register")}>
             <div>
               <FailIcon />

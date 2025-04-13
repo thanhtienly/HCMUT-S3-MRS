@@ -17,14 +17,31 @@ const building = ["H1", "H2", "H3", "H6"];
 const stateRoom = ["Trống", "Đã đặt"];
 const roomDetailFake = DataFake[0];
 console.log(roomDetailFake);
-function Product() {
-  // const { id } = useParams();
+function RoomDetail() {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [roomDetail, setRoomDetail] = useState(roomDetailFake);
+  const [roomDetail, setRoomDetail] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [register, setRegister] = useState(false);
   const handleOnClickRegister = () => {
     setRegister(!register);
   };
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`http://localhost:8000/room/${id}`);
+        const data = await response.json();
+        setRoomDetail(data.data);
+      } catch (error) {
+        console.error("Error fetching product data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProduct();
+  }, [id]);
 
   useEffect(() => {
     setRoomDetail(roomDetailFake);
@@ -66,7 +83,7 @@ function Product() {
               <div className="product-details">
                 <h2 className="product-title">
                   {" "}
-                  Loại phòng: {typeTable[roomDetail.type]}
+                  Loại phòng: {roomDetail.type}
                 </h2>
                 {/* <p className="product-category">{product.category}</p> */}
                 <div className="product-rating">
@@ -139,15 +156,19 @@ function Product() {
         </div>
       </div>
       {register && (
-        <RegisterForm onClickCloseRegisterForm={handleOnClickRegister} />
+        <RegisterForm
+          onClickCloseRegisterForm={handleOnClickRegister}
+          roomId={id}
+          typeOfRoom={roomDetail.type}
+        />
       )}
     </div>
   );
 
   return (
-    // <>{loading ? <LoadingSkeleton /> : roomDetail && <ProductDetails />}</>
-    <ProductDetails />
+    <>{loading ? <LoadingSkeleton /> : roomDetail && <ProductDetails />}</>
+    // <ProductDetails />
   );
 }
 
-export default Product;
+export default RoomDetail;
