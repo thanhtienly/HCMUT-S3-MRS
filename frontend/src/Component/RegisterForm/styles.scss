@@ -168,20 +168,6 @@ select {
 //   animation: slideIn 0.5s ease-out forwards;
 // }
 .wrapper_message_register {
-  top: 16px;
-  font-weight: 500;
-  position: fixed;
-  z-index: 99999;
-  padding: 10px 20px;
-  right: 16px;
-  border: 1px solid;
-  border-radius: 5px;
-  background-color: rgb(228, 44, 44);
-  transform: translateX(100%);
-  opacity: 0;
-  color: white;
-  animation: slideIn 0.5s ease-out forwards, slideOut 0.5s ease-in forwards;
-  animation-delay: 0s, 2s; /* delay slideOut sau 2s */
 }
 
 // join room\
@@ -217,11 +203,11 @@ select {
   cursor: pointer;
   color: var(--primary);
 }
-.wrapper_joinRoom_title {
+.wrapper_joinRoom_title_register {
   text-align: center;
-  font-size: 24px;
+  font-size: 24px !important;
   margin-bottom: 20px;
-  color: var(--primary);
+  color: var(--primary) !important;
 }
 
 .wrapper_joinRoom_password {

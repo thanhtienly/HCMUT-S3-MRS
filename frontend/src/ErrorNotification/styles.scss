@@ -1,0 +1,24 @@
+.wrapper_error_notification {
+  top: 16px;
+  font-weight: 500;
+  position: fixed;
+  z-index: 99999;
+  padding: 10px 20px;
+  right: 16px;
+  border: 1px solid;
+  border-radius: 14px;
+  background-color: var(--primary);
+
+  // transform: translateX(100%);
+  opacity: 1;
+  color: white;
+  // animation: slideIn 0.5s ease-out forwards, slideOut 0.5s ease-in forwards;
+  // animation-delay: 0s, 2s; /* delay slideOut sau 2s */
+}
+.wrapper_icon_fail {
+  background-color: red;
+  border-radius: 50px;
+}
+.wrapper_error_notification_message {
+  margin-left: 6px;
+}

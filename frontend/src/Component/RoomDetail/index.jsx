@@ -16,7 +16,7 @@ const typeTable = ["Tự học", "Học nhóm", "Mentoring"];
 const building = ["H1", "H2", "H3", "H6"];
 const stateRoom = ["Trống", "Đã đặt"];
 const roomDetailFake = DataFake[0];
-console.log(roomDetailFake);
+
 function RoomDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
