@@ -196,13 +196,23 @@ const findOverlapTimeSlot = async ({ roomId, startTime, endTime }) => {
   });
 };
 
-const countAllOverlapReservation = async ({ roomId, startTime, endTime }) => {
-  const overlapReservation = await findOverlapTimeSlot({
+const findTimeSlotReservation = async ({ roomId, startTime, endTime }) => {
+  return await Reservation.findAll({
+    where: {
+      roomId: roomId,
+      from: startTime,
+      to: endTime,
+    },
+  });
+};
+
+const countTimeSlotReservation = async ({ roomId, startTime, endTime }) => {
+  const timeSlotReservation = await findTimeSlotReservation({
     roomId: roomId,
     startTime: startTime,
     endTime: endTime,
   });
-  return overlapReservation.length;
+  return timeSlotReservation.length;
 };
 
 const createReservation = async ({
@@ -234,6 +244,7 @@ module.exports = {
   findReservationById,
   findBookedTimeSlotOfRoom,
   findOverlapTimeSlot,
-  countAllOverlapReservation,
+  findTimeSlotReservation,
+  countTimeSlotReservation,
   createReservation,
 };
