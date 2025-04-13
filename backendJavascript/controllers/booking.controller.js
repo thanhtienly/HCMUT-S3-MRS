@@ -4,8 +4,9 @@ const {
   findBookedTimeSlotOfRoom,
   findOverlapTimeSlot,
   createReservation,
-  countAllOverlapReservation,
   findReservationById,
+  countTimeSlotReservation,
+  findTimeSlotReservation,
 } = require("../services/booking.service");
 const { findRoomById } = require("../services/room.service");
 const {
@@ -27,7 +28,7 @@ const getListReservationHistory = async (req, res) => {
 
     reservationList = await Promise.all(
       reservationList.map(async (reservation) => {
-        var currentSeat = await countAllOverlapReservation({
+        var currentSeat = await countTimeSlotReservation({
           roomId: reservation.roomId,
           startTime: new Date(reservation.from).getTime(),
           endTime: new Date(reservation.to).getTime(),
@@ -56,7 +57,7 @@ const getBookedTimeSlot = async (req, res) => {
   if (new Date(date).getTime() < startOfToday.getTime()) {
     return res.status(400).json({
       success: false,
-      message: "Search date can't be yesterday",
+      message: "Invalid date",
     });
   }
 
@@ -65,7 +66,7 @@ const getBookedTimeSlot = async (req, res) => {
   if (!room) {
     return res.status(404).json({
       success: false,
-      message: "Invalid roomId, can't find any room",
+      message: "Room not found",
     });
   }
 
@@ -109,8 +110,7 @@ const bookTimeSlot = async (req, res) => {
   if (startTime < new Date().getTime()) {
     return res.status(400).json({
       success: false,
-      message:
-        "Invalid booking dateTime, you can't book a room with the past time",
+      message: "Invalid date",
     });
   }
 
@@ -120,7 +120,7 @@ const bookTimeSlot = async (req, res) => {
   if (overLapBooked.length != 0) {
     return res.status(400).json({
       success: false,
-      message: "The room have been reserved",
+      message: "Overlap time slot",
     });
   }
 
@@ -151,7 +151,7 @@ const bookTimeSlot = async (req, res) => {
     console.log(error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error when create a reservation",
+      message: "Internal server error",
     });
   }
 };
@@ -165,7 +165,7 @@ const joinTimeSlot = async (req, res) => {
   if (!reservation) {
     return res.status(404).json({
       success: false,
-      message: "Can't fount any reservation with provided info",
+      message: "Reservation not found",
     });
   }
 
@@ -176,13 +176,30 @@ const joinTimeSlot = async (req, res) => {
     });
   }
 
-  var currentParticipants = await countAllOverlapReservation({
+  /* Current number of participants */
+  var timeSlotReservation = await findTimeSlotReservation({
     roomId: reservation.roomId,
     startTime: reservation.from,
     endTime: reservation.to,
   });
 
-  if (currentParticipants >= reservation.roomCapacity) {
+  /* Check if user is join the room before or not */
+  var isUserJoin = false;
+  timeSlotReservation.forEach((reservation) => {
+    if (reservation.userId == userId) {
+      isUserJoin = true;
+    }
+  });
+
+  if (isUserJoin) {
+    return res.status(400).json({
+      success: false,
+      message: "Duplicate joining",
+    });
+  }
+
+  /* Check remaining of the room */
+  if (timeSlotReservation.length >= reservation.roomCapacity) {
     return res.status(400).json({
       success: false,
       message: "The room's full",
@@ -222,7 +239,7 @@ const joinTimeSlot = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Internal server error when joining a room",
+      message: "Internal server error",
     });
   }
 };
