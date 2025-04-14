@@ -15,35 +15,32 @@ const Contact = () => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const handleSubmit = (e) => {
-    const url = "http://localhost:8080/feedback";
-    let payload = {
-      mssv: mssv,
-      email: email,
-      phone: phone,
-      subject: subject,
-      message: message,
-    };
-    // fetch(url, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(payload),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (data.status === "success") {
-    //       alert("Feedback sent successfully");
-    //       setMssv("");
-    //       setEmail("");
-    //       setPhone("");
-    //       setSubject("");
-    //       setMessage("");
-    //     } else {
-    //       alert("Feedback failed to send");
-    //     }
-    //   });
-    navigate("report/successful");
+    const url = "http://localhost:8080/complaint/create";
+    const idUser = localStorage.getItem("idUser");
+
+    if (idUser !== null) {
+      console.log(idUser);
+      const payload = {
+        idUser: idUser,
+        idStudent: mssv,
+        email: email,
+        phoneNumber: phone,
+        title: subject,
+        content: message,
+      };
+
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      navigate("report/successful");
+    } else {
+      navigate("/signin");
+    }
   };
   return (
     <section class="py-3 py-md-5">

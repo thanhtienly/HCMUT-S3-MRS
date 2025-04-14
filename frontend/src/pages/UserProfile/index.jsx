@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Space, Table, Tag, Modal, Button, Descriptions } from "antd";
 // import CreateFeedbackForm from "../../components/CreateFeedbackForm/index";
 
 const Profile = () => {
+  const [complaints, setComplaints] = useState([]);
   const [userData, setUserData] = useState({});
-  const [orders, setOrders] = useState([]);
-  const [isReceived, setIsReceived] = useState(false);
+  const [isDeleteComplaint, setIsDeleteComplaint] = useState(false);
+  // const [orders, setOrders] = useState([]);
+  // const [isReceived, setIsReceived] = useState(false);
   const [receiveData, setReceiveData] = useState(false);
-  const [maDonToFeedBack, setMaDonToFeedBack] = useState(null);
+  // const [maDonToFeedBack, setMaDonToFeedBack] = useState(null);
   const navigate = useNavigate();
   const [isAddFeedbackModalVisible, setIsAddFeedbackModalVisible] =
     useState(false);
@@ -58,44 +60,43 @@ const Profile = () => {
   const handleCloseAddFeedbackModal = () => {
     setIsAddFeedbackModalVisible(false);
   };
-  const handleAddFeedback = (id) => {
-    setMaDonToFeedBack(id);
-    console.log(id);
-    console.log(localStorage.getItem("idUser"));
-    // setIsAddFeedbackModalVisible(true);
-  };
+  // const handleAddFeedback = (id) => {
+  //   setMaDonToFeedBack(id);
+  //   console.log(id);
+  //   console.log(localStorage.getItem("idUser"));
+  //   // setIsAddFeedbackModalVisible(true);
+  // };
 
-  // const handleFormSubmit = (values) => {
-  //   const url = "http://localhost:8080/donKhieuNai/create";
-  //   fetch(url, {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(values),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  //     .catch((error) => console.error(error));
+  // tch((error) => console.error(error));
   // };
 
   useEffect(() => {
-    // Fetch users from API
-    const url = "http://localhost:8080/donMonAn/all";
-    fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setOrders(data);
-        console.log(data);
-      })
-      //    .then(data => setUsers(data))
-      .catch((error) => console.error("Error:", error));
-  }, [isReceived]);
+    const idUser = localStorage.getItem("idUser");
+    if (idUser !== null) {
+      const url = `http://localhost:8080/complaint/${idUser}`;
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => setComplaints(data));
+    }
+  }, [isDeleteComplaint]);
+
+  // useEffect(() => {
+  //   // Fetch users from API
+  //   const url = "http://localhost:8080/donMonAn/all";
+  //   fetch(url, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setOrders(data);
+  //       console.log(data);
+  //     })
+  //     //    .then(data => setUsers(data))
+  //     .catch((error) => console.error("Error:", error));
+  // }, [isReceived]);
 
   useEffect(() => {
     const idUser = localStorage.getItem("idUser");
@@ -111,62 +112,52 @@ const Profile = () => {
       })
       .catch((err) => console.log(err));
   }, [receiveData]);
+  const handleDeleteComplaint = (idComplaint) => {
+    const url = `http://localhost:8080/complaint/delete/${idComplaint}`;
+    fetch(url, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    }).then((response) => response.json);
+    setIsDeleteComplaint((prev) => !prev);
+  };
 
   const columns = [
     {
-      title: "ID",
-      dataIndex: "id",
-      key: "id",
+      title: "Mã sinh viên",
+      dataIndex: "idStudent",
+      key: "idStudent",
     },
     {
-      title: "Date",
-      dataIndex: "orderDate",
-      key: "orderDate",
+      title: "Tiêu đề",
+      dataIndex: "title",
+      key: "title",
       render: (text) => {
-        return text;
+        const maxLength = 20; // Số ký tự tối đa bạn muốn hiển thị
+        return text.length > maxLength
+          ? text.substring(0, maxLength) + "..."
+          : text;
       },
     },
     {
-      title: "Total",
-      dataIndex: "totalPrice",
-      key: "totalPrice",
+      title: "Nội dung",
+      dataIndex: "content",
+      key: "content",
       render: (text) => {
-        return text + "VND";
+        const maxLength = 40; // Số ký tự tối đa bạn muốn hiển thị
+        return text.length > maxLength
+          ? text.substring(0, maxLength) + "..."
+          : text;
       },
     },
     {
-      title: "Payment method",
-      dataIndex: "paymentMethod",
-      key: "paymentMethod",
-    },
-    {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-      render: (text) => {
-        if (text === "pending") return <Tag color={"orange"}>Pending</Tag>;
-        return <Tag color={"green"}>Done</Tag>;
-      },
-    },
-    {
-      title: "Action",
-      dataIndex: "id", // Ensure `id` is the field containing the unique identifier
-      key: "action",
-      render: (id) => (
-        <Tag color={"blue"} onClick={() => handleAddFeedback(id)}>
-          Khiếu nại
+      title: "Xóa lịch sử",
+      dataIndex: "idComplaint", // Ensure `id` is the field containing the unique identifier
+      key: "idComplaint",
+      render: (idComplaint) => (
+        <Tag color={"blue"} onClick={() => handleDeleteComplaint(idComplaint)}>
+          Xóa
         </Tag>
       ),
-    },
-  ];
-
-  const data = [
-    {
-      id: "1",
-      orderDate: "2017-01-01",
-      totalPrice: 10000,
-      paymentMethod: "Credit Card",
-      status: "pending",
     },
   ];
 
@@ -256,11 +247,11 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-            {/* <Table
+            <Table
               className="w-full lg:w-3/5"
               columns={columns}
-              dataSource={data}
-            /> */}
+              dataSource={complaints}
+            />
           </div>
         </section>
       </div>
