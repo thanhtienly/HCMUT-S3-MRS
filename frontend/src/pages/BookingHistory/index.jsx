@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import React, { useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import styles from "./BookingHistory.module.scss";
 import { FaTrash, FaEye } from "react-icons/fa";
 import ReactPaginate from "react-paginate";
@@ -135,15 +135,20 @@ const bookings = [
 ];
 
 const BookingHistory = () => {
-  const [history, setHistory] = useState(bookings);
+  const [history, setHistory] = useState([]);
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
+  const [historyBooking, setHistoryBooking] = useState([]);
+  const [lengthBooking, setLengthBooking] = useState(0);
   const itemsPerPage = 4;
-  const offset = currentPage * itemsPerPage;
-  const currentItems = history.slice(offset, offset + itemsPerPage);
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
   };
+  useEffect(() => {
+    const offset = currentPage * itemsPerPage;
+    const handleBooking = history.slice(offset, offset + itemsPerPage);
+    setHistoryBooking(handleBooking);
+  }, [currentPage, history]);
   const handleDelete = (id) => {
     setHistory(history.filter((booking) => booking.id !== id));
   };
@@ -151,22 +156,33 @@ const BookingHistory = () => {
   const handleViewDetails = (booking) => {
     setSelectedBooking(booking);
   };
-
+  useEffect(() => {
+    const idUser = localStorage.getItem("idUser");
+    const url = "http://localhost:8000/booking/history";
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "user-id": idUser,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setLengthBooking(data.data.length);
+        setHistory(data.data);
+      });
+  }, []);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Lịch sử đặt phòng</h2>
       <ul className={styles.list}>
-        {currentItems.map((booking) => (
+        {historyBooking.map((booking) => (
           <li
             onClick={() => handleViewDetails(booking)}
             key={booking.id}
             className={styles.item}
           >
-            <img
-              src={booking.pictureLink}
-              alt="Room"
-              className={styles.image}
-            />
+            <img src={pictureRoom} alt="Room" className={styles.image} />
             <div className={styles.info}>
               <p>
                 <strong>Toà nhà:</strong> {booking.building}
@@ -201,15 +217,17 @@ const BookingHistory = () => {
       </ul>
 
       {selectedBooking && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <h3>Chi tiết phòng</h3>
+        <div className={cx("wrapper_specifies_booking")}>
+          <div className={cx("wrapper_child_booking")}>
+            <h3 className={cx("wrapper_bookingHis_title")}>Chi tiết phòng</h3>
             <p>
               <strong>Toà nhà:</strong> {selectedBooking.building}
+              <strong className={cx("wrapper_booking_floor")}>
+                Tầng:
+              </strong>{" "}
+              {selectedBooking.floor}
             </p>
-            <p>
-              <strong>Tầng:</strong> {selectedBooking.floor}
-            </p>
+
             <p>
               <strong>Phòng:</strong> {selectedBooking.roomNumber}
             </p>
@@ -217,12 +235,20 @@ const BookingHistory = () => {
               <strong>Số chỗ tối đa:</strong> {selectedBooking.maxSeat}
             </p>
             <p>
-              <strong>Số chỗ hiện tại:</strong> {selectedBooking.currentSeat}
+              <strong>Ngày:</strong> {selectedBooking.from.split("T")[0]}
+            </p>
+            <p>
+              <strong>Thời gian bắt đầu:</strong>{" "}
+              {selectedBooking.from.split("T")[1]}
+            </p>
+            <p>
+              <strong>Thời gian kết thúc:</strong>{" "}
+              {selectedBooking.to.split("T")[1]}
             </p>
             <p>
               <strong>Mô tả:</strong> {selectedBooking.description}
             </p>
-            <p>
+            <p className={cx("wrapper_timeBooking")}>
               <strong>Thời gian đặt:</strong>{" "}
               {new Date(selectedBooking.historyTime).toLocaleString()}
             </p>
@@ -239,7 +265,7 @@ const BookingHistory = () => {
         previousLabel={"Trang trước"}
         nextLabel={"Trang sau"}
         breakLabel={"..."}
-        pageCount={Math.ceil(bookings.length / itemsPerPage)}
+        pageCount={Math.ceil(lengthBooking / itemsPerPage)}
         marginPagesDisplayed={2}
         pageRangeDisplayed={3}
         onPageChange={handlePageClick}

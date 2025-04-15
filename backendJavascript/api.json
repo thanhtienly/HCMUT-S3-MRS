@@ -147,3 +147,18 @@
     }
   }
 ]
+
+
+{
+"id": "0ab00c88-6256-4402-b65c-b56e189426fe",
+            "roomId": "1",
+            "building": "H6",
+            "floor": "1",
+            "roomNumber": "H6-101",
+            "description": "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện",
+            "maxSeat": 4,
+            "from": "2025-04-16T11:37",
+            "to": "2025-04-16T12:37",
+            "historyTime": "2025-04-15T21:37",
+            "currentSeat": 1
+}
