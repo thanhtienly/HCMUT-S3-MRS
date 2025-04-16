@@ -1,0 +1,53 @@
+.wrapper_bell_notification {
+  position: relative;
+  display: inline-block;
+}
+.wrapper_notification {
+  position: fixed;
+  z-index: 99999;
+  position: absolute;
+  top: 32px;
+  right: 0px;
+  width: 300px;
+  background-color: white;
+  border-radius: 5px;
+  padding-left: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.wrapper_title {
+  padding-top: 10px;
+  padding-left: 5px;
+  font-size: 21px;
+  color: var(--primary);
+}
+.notification_list {
+  max-height: 600px;
+  overflow-y: auto;
+  border-radius: 8px;
+  padding: 0px;
+  margin: 0px;
+}
+.wrapper_message {
+  padding: 2px 5px 2px 5px;
+  border: 1px solid #f4f2f2;
+  overflow-y: auto;
+}
+.message {
+  margin-left: 0px;
+
+  cursor: pointer;
+  list-style: none;
+
+  &:hover {
+    background-color: #f9f9f9;
+  }
+}
+.wrapper_date {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgb(6, 114, 190);
+}
+
+.activeBell {
+  color: greenyellow;
+}
