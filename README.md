@@ -16,11 +16,33 @@ An easy-to-use way to book a study room at HCMUT for students and a way for mana
 
 ## 🛠️ Technology Stack
 
-| Layer       | Tech Stack                                             |
-| ----------- | ------------------------------------------------------ |
+| Layer       | Tech Stack                                            |
+| ----------- | ----------------------------------------------------- |
 | 🔙 Backend  | Java with Spring Framework, Javascript with ExpressJS |
 | 🌐 Frontend | HTML, CSS, JavaScript, Bootstrap, React               |
 | 🗃️ Database | MySQL                                                 |
+
+## Some picture about website
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+![alt text](image-4.png)
+
+![alt text](image-5.png)
+
+![alt text](image-6.png)
+
+![alt text](image-7.png)
+
+![alt text](image-8.png)
+
+![alt text](image-9.png)
+
+![alt text](image-10.png)
 
 # How to start
 
@@ -32,16 +54,17 @@ To start the project here are the things to do
 2. Run Auth service at backendJava folder
 3. Run Booking service at backendJavascript folder
 4. Run website with UI at frontend folder
-### 1) To clone project
-``
-$ git clone https://github.com/thanhtienly/HCMUT-S3-MRS.git
-``
-### 2) To run services and website with UI
-You can follow the README.md file under each folder to run its app. 
 
+### 1) To clone project
+
+`$ git clone https://github.com/thanhtienly/HCMUT-S3-MRS.git`
+
+### 2) To run services and website with UI
+
+You can follow the README.md file under each folder to run its app.
 
 ## 📌 Easier way to run
+
 You can run the microservices and website with UI by using Docker with docker-compose.yml file
 
 The docker-compose.yml file will be provided soon.
-

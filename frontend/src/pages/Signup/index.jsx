@@ -77,6 +77,7 @@ const Signup = () => {
       style={{
         backgroundImage: `url(${signup})`,
         backgroundSize: "cover",
+        minHeight: "75vh",
       }}
     >
       <form onSubmit={handleSubmit(onSubmit)}>

@@ -83,7 +83,7 @@ const listBuilding = [
   },
 ];
 function Menu() {
-  const [typeRoom, setTypeRoom] = useState(0);
+  const [typeRoom, setTypeRoom] = useState("Tự học");
   const [building, setBuilding] = useState("H1");
   const [currentPage, setCurrentPage] = useState(0);
   const [dataRoomList, setDataRoomList] = useState([]);
@@ -96,20 +96,22 @@ function Menu() {
 
   useEffect(
     function () {
+      // console.log(dataRoomList);
       let newDataRoom = dataRoomList.filter(
-        (room) => room.building === building
+        (room) => room.building === building && room.type === typeRoom
       );
       setDataRoom(newDataRoom);
     },
-    [building]
+    [building, typeRoom]
   );
-  useEffect(
-    function () {
-      let newDataRoom = dataRoomList.filter((room) => room.type === typeRoom);
-      setDataRoom(newDataRoom);
-    },
-    [typeRoom]
-  );
+
+  // useEffect(
+  //   function () {
+  //     let newDataRoom = dataRoomList.filter((room) => room.type === typeRoom);
+  //     setDataRoom(newDataRoom);
+  //   },
+  //   [typeRoom]
+  // );
 
   // Get data
 
@@ -217,7 +219,7 @@ function Menu() {
       style={{
         backgroundImage: `url(${imageClassroom})`,
         backgroundSize: "cover",
-        minHeight: "100vh",
+        minHeight: "85vh",
       }}
     >
       {/* Thanh tìm kiếm */}
@@ -294,9 +296,9 @@ function Menu() {
                 <div
                   key={index}
                   className={cx("wrapper_navBar_item", {
-                    active_navBar: item.id === typeRoom,
+                    active_navBar: item.name === typeRoom,
                   })}
-                  onClick={() => setTypeRoom(item.id)}
+                  onClick={() => setTypeRoom(item.name)}
                 >
                   {item.name}
                 </div>
