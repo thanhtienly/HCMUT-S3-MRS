@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 8000;
 const { Reservation } = require("./models/Reservation");
 const { Room } = require("./models/Room");
 const { SelfStudyArea } = require("./models/SelfStudyArea");
+const { Comment } = require("./models/Comment");
 const associations = require("./models/associations");
 const { seed } = require("./config/seed");
 
@@ -35,10 +36,10 @@ app.use("/room", roomRoute);
 
 /* Khởi tạo DB và chạy server */
 initDB()
-  .then(() => {
+  .then(async () => {
     sequelize.sync({ force: true }).then(async () => {
-      console.log("Connected to MySQL");
       await seed();
+      console.log("Connected to MySQL");
       app.listen(PORT, () => {
         console.log(`Server is running on http://localhost:${PORT}`);
       });
