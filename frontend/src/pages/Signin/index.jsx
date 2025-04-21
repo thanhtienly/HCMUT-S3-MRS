@@ -51,7 +51,7 @@ const Signin = (props) => {
       style={{
         backgroundImage: `url(${signin})`,
         backgroundSize: "cover",
-        minHeight: "70vh",
+        minHeight: "75vh",
       }}
     >
       <div className={"titleContainer"}>

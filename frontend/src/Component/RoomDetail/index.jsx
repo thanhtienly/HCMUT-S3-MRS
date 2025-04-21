@@ -130,8 +130,8 @@ function RoomDetail() {
             <div className="card w-100">
               <div className="card-body p-4">
                 <div>
-                  <h5>Le Huy</h5>
-                  <p className="small">3 hours ago</p>
+                  <h5>Nguyen Ngoc</h5>
+                  <p className="small">1 hours ago</p>
                   <p>
                     Phòng học nơi đây tiện nghi, có hỗ trợ đầy đủ các thiết bị
                     và không gian thoải mái

@@ -385,7 +385,7 @@ function RegisterForm({ onClickCloseRegisterForm, roomId, typeOfRoom }) {
                             <IconClose />
                           </div>
                           <h3 className={cx("wrapper_joinRoom_title_register")}>
-                            Chủ phòng: Nguyễn Thùy Linh
+                            Chủ phòng: Huỳnh Ngọc Thạch
                           </h3>
                           <div>
                             <label htmlFor="passwordJoin">
