@@ -12,6 +12,8 @@ import pictureRoom from "../../assets/pictureRoom.jpg";
 import RegisterForm from "../RegisterForm/index.jsx";
 import { useNavigate } from "react-router-dom";
 // import pictureImage from "../../DataStore/Picture";
+import ErrorNotification from "../../ErrorNotification";
+
 const typeTable = ["Tự học", "Học nhóm", "Mentoring"];
 const building = ["H1", "H2", "H3", "H6"];
 const stateRoom = ["Trống", "Đã đặt"];
@@ -23,8 +25,66 @@ function RoomDetail() {
   const [roomDetail, setRoomDetail] = useState([]);
   const [loading, setLoading] = useState(true);
   const [register, setRegister] = useState(false);
+
+  const [messageError, setMessageError] = useState("");
+  const [commentError, setCommentError] = useState(false);
+  const [comments, setComments] = useState([]);
+  const commentRef = React.useRef(null);
+
+  useEffect(() => {
+    fetchAllComment();
+  }, []);
+
   const handleOnClickRegister = () => {
     setRegister(!register);
+  };
+
+  const fetchAllComment = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/room/1/comment"); // Replace with your API endpoint
+      const data = await response.json();
+      setComments(data.data);
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    }
+  };
+
+  const handleSubmitComment = async (e) => {
+    e.preventDefault();
+    const content = commentRef.current.value;
+
+    if (!content.trim()) {
+      setCommentError(true);
+      setMessageError("Bình luận không thể trống");
+      return;
+    }
+
+    const idUser = localStorage.getItem("idUser");
+    // e.preventDefault();
+    if (idUser === null) {
+      // e.preventDefault();
+      navigate("/signin");
+    } else {
+      try {
+        await fetch(`http://localhost:8000/room/${id}/comment`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "user-id": idUser,
+          },
+          body: JSON.stringify({
+            content: content.trim(),
+          }),
+        });
+        commentRef.current.value = "";
+        fetchAllComment();
+      } catch (error) {
+        setCommentError(true);
+        setMessageError("Lỗi khi lưu bình luận");
+        console.error("Error submitting comment:", error);
+        commentRef.current.value = "";
+      }
+    }
   };
 
   useEffect(() => {
@@ -116,45 +176,6 @@ function RoomDetail() {
         </div>
       </div>
 
-      {/* Comments box */}
-      <div className="row d-flex justify-content-center mt-5">
-        <div className="col-md-11 col-lg-9 col-xl-7">
-          <div className="d-flex flex-start mb-4">
-            <img
-              src="https://th.bing.com/th/id/OIP.vSLjVawLO3L3rbX3WtbJNwHaHa?rs=1&pid=ImgDetMain"
-              alt="avatar"
-              className="rounded-circle shadow-1-strong me-3"
-              width="60"
-              height="60"
-            />
-            <div className="card w-100">
-              <div className="card-body p-4">
-                <div>
-                  <h5>Le Huy</h5>
-                  <p className="small">3 hours ago</p>
-                  <p>
-                    Phòng học nơi đây tiện nghi, có hỗ trợ đầy đủ các thiết bị
-                    và không gian thoải mái
-                  </p>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div className="d-flex align-items-center">
-                      <button className="btn btn-outline-primary">
-                        <ThumbsUp />
-                      </button>
-                      <button className="btn btn-outline-danger ms-3">
-                        <ThumbsDown />
-                      </button>
-                    </div>
-                    <button className="btn btn-outline-primary">
-                      <Reply />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       {register && (
         <RegisterForm
           onClickCloseRegisterForm={handleOnClickRegister}
@@ -165,8 +186,55 @@ function RoomDetail() {
     </div>
   );
 
+  const Comment = () => (
+    <div className="container comment-container">
+      <div className="comment-area d-flex flex-column">
+        <p>Bình luận</p>
+        <textarea
+          name="comment"
+          id="comment"
+          ref={commentRef}
+          placeholder="Vui lòng nhập bình luận của bạn"
+        ></textarea>
+        <div className="d-flex justify-content-end">
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="comment-submit"
+            onClick={handleSubmitComment}
+          >
+            Gửi
+          </button>
+        </div>
+      </div>
+
+      <div className="comment-list">
+        {comments.map((comment) => (
+          <div className="comment-item d-flex flex-column">
+            <div className="comment-info d-flex flex-row flex-wrap">
+              <p className="name">{comment.userName}</p>
+              <p className="date">{comment.date.split("T").join(" ")}</p>
+            </div>
+            <div className="comment-content">{comment.content}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
-    <>{loading ? <LoadingSkeleton /> : roomDetail && <ProductDetails />}</>
+    <>
+      {loading ? (
+        <LoadingSkeleton />
+      ) : (
+        roomDetail && (
+          <>
+            <ProductDetails />
+            <Comment />
+          </>
+        )
+      )}
+    </>
     // <ProductDetails />
   );
 }
