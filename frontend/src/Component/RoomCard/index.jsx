@@ -34,7 +34,7 @@ function RoomCard({ data }) {
           </div>
           <div className={cx("wrapper_building_floor")}>
             <span className={cx("inforRoom inforRoom_building")}>
-              Tòa: {building[data.building]} -
+              Tòa: {data.building} -
             </span>
 
             <span className={cx("inforRoom inforRoom_floor")}>
