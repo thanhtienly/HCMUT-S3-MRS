@@ -41,7 +41,7 @@ function RoomDetail() {
 
   const fetchAllComment = async () => {
     try {
-      const response = await fetch("http://localhost:8000/room/1/comment"); // Replace with your API endpoint
+      const response = await fetch(`http://localhost:8000/room/${id}/comment`); // Replace with your API endpoint
       const data = await response.json();
       setComments(data.data);
     } catch (error) {
