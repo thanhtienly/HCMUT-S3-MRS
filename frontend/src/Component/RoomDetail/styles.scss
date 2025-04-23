@@ -2,7 +2,6 @@
 .product-page {
   position: relative;
   background-color: #f8f9fa;
-  min-height: 100vh;
   padding-top: 80px;
 
   .product-container {
@@ -165,13 +164,12 @@
 }
 
 .comment-container {
-  margin-top: 40px;
   background-color: rgb(248, 249, 250);
-  padding: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 
   .comment-area {
     padding-bottom: 10px;
-    border-bottom: 1px solid gray;
 
     p {
       font-size: 1.5rem;
@@ -179,6 +177,7 @@
     }
 
     textarea {
+      margin-right: 12px;
       padding: 6px;
       max-width: 100%;
       outline: none;
@@ -194,17 +193,14 @@
     textarea:focus {
       border: 1px solid blue;
     }
-
-    #comment-submit {
-      margin-top: 15px;
-    }
   }
 
   .comment-list {
     margin-top: 20px;
 
     .comment-item {
-      margin: 5px;
+      margin-top: 5px;
+      margin-bottom: 5px;
       padding: 10px;
       background-color: rgb(241, 243, 245);
       border-radius: 5px;

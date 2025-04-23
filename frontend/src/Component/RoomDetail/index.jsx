@@ -188,36 +188,42 @@ function RoomDetail() {
 
   const Comment = () => (
     <div className="container comment-container">
-      <div className="comment-area d-flex flex-column">
-        <p>Bình luận</p>
-        <textarea
-          name="comment"
-          id="comment"
-          ref={commentRef}
-          placeholder="Vui lòng nhập bình luận của bạn"
-        ></textarea>
-        <div className="d-flex justify-content-end">
-          <button
-            type="button"
-            class="btn btn-primary"
-            id="comment-submit"
-            onClick={handleSubmitComment}
-          >
-            Gửi
-          </button>
-        </div>
-      </div>
-
-      <div className="comment-list">
-        {comments.map((comment) => (
-          <div className="comment-item d-flex flex-column">
-            <div className="comment-info d-flex flex-row flex-wrap">
-              <p className="name">{comment.userName}</p>
-              <p className="date">{comment.date.split("T").join(" ")}</p>
+      <div className="row justify-content-center">
+        <div className="col-lg-10">
+          <div className="comment-area d-flex flex-column w-100">
+            <p>Bình luận</p>
+            <div className="d-flex flex-row w-100">
+              <textarea
+                name="comment"
+                id="comment"
+                ref={commentRef}
+                placeholder="Vui lòng nhập bình luận của bạn"
+                rows={1}
+                className="w-100"
+              ></textarea>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="comment-submit"
+                onClick={handleSubmitComment}
+              >
+                Gửi
+              </button>
             </div>
-            <div className="comment-content">{comment.content}</div>
           </div>
-        ))}
+
+          <div className="comment-list">
+            {comments.map((comment) => (
+              <div className="comment-item d-flex flex-column">
+                <div className="comment-info d-flex flex-row flex-wrap">
+                  <p className="name">{comment.userName}</p>
+                  <p className="date">{comment.date.split("T").join(" ")}</p>
+                </div>
+                <div className="comment-content">{comment.content}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
