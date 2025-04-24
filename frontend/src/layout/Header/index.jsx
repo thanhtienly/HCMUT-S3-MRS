@@ -36,10 +36,12 @@ const Header = () => {
     <>
       {/* Main Navigation */}
       <nav
-        className="main-nav navbar navbar-expand-lg"
-        style={{
-          background: "var(--primary_background)",
-        }}
+        className={cx(
+          "main-nav",
+          "navbar",
+          "navbar-expand-lg",
+          "wrapper_top_header"
+        )}
       >
         <div className="container-fluid">
           {/* Mobile Menu Button */}

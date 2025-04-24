@@ -1,6 +1,6 @@
 
 server:
-  port: 8080cle
+  port: 8080
 spring:
   application:
     name: HcmutS3MRS-service
