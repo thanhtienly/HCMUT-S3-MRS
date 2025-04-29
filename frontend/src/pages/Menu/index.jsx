@@ -186,20 +186,18 @@ function Menu() {
     const filters = parseSearchQuery(searchQuerry);
 
     const listOfRoom = dataRoom.filter((room) => {
-      // Kiểm tra từng trường nếu có trong filters
-      if (filters.floor !== undefined && room.floor !== filters.floor)
+      if (filters.floor != undefined && room.floor != filters.floor)
         return false;
       if (
-        filters.roomNumber !== undefined &&
-        room.roomNumber !== filters.roomNumber
+        filters.roomNumber != undefined &&
+        room.roomNumber.slice(3) != filters.roomNumber
       )
         return false;
-      if (filters.building !== undefined && room.building !== filters.building)
+      if (filters.building != undefined && room.building != filters.building)
         return false;
-      if (filters.maxSeat !== undefined && room.maxSeat !== filters.maxSeat)
+      if (filters.maxSeat != undefined && room.maxSeat != filters.maxSeat)
         return false;
-      if (filters.type !== undefined && room.type !== filters.type)
-        return false;
+      if (filters.type != undefined && room.type != filters.type) return false;
 
       return true;
     });

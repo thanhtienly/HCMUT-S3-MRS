@@ -6,6 +6,7 @@ import classNames from "classnames/bind";
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
+import RequiredLogin from "../../Component/RequiredLogin";
 const cx = classNames.bind(styles);
 const Contact = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Contact = () => {
   const [phone, setPhone] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [stateLogin, setStateLogin] = useState(false);
   const handleSubmit = (e) => {
     const url = "http://localhost:8080/complaint/create";
     const idUser = localStorage.getItem("idUser");
@@ -39,7 +41,7 @@ const Contact = () => {
 
       navigate("report/successful");
     } else {
-      navigate("/signin");
+      setStateLogin(true);
     }
   };
   return (
@@ -192,6 +194,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      {stateLogin && <RequiredLogin RequiredLogin={setStateLogin} />}
     </section>
   );
 };

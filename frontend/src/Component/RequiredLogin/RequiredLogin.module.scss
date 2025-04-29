@@ -1,0 +1,39 @@
+// .wrapper_navigate {
+
+// }
+.wrapper_box_navigate_login {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  width: 400px;
+  min-height: 200px;
+  background-color: rgb(235, 232, 232);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper_box_navigate_title {
+  padding: 0 30px;
+  color: var(--primary);
+  span {
+    color: red;
+  }
+}
+.wrapper_navigate_button {
+  display: block;
+}
+.button_child {
+  background-color: rgb(41, 254, 41);
+  border-width: 0;
+  padding: 5px 15px;
+  border-radius: 6px;
+  &:hover {
+    background-color: rgb(26, 210, 26);
+    cursor: pointer;
+  }
+}

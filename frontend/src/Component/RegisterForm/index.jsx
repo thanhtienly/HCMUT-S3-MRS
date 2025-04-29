@@ -10,6 +10,7 @@ import ReactPaginate from "react-paginate";
 import * as Yup from "yup";
 import ErrorNotification from "../../ErrorNotification";
 import { yupResolver } from "@hookform/resolvers/yup";
+import RequiredLogin from "../RequiredLogin";
 
 const cx = classNames.bind(styles);
 const DataTemporary = DataFake[0];
@@ -81,6 +82,7 @@ function RegisterForm({ onClickCloseRegisterForm, roomId, typeOfRoom }) {
   const [messageRegister, setMessageRegister] = useState(false);
   const [orderTime, setOrderTime] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [stateLogin, setStateLogin] = useState(false);
 
   const itemsPerPage = 3;
   const [currentOrderTime, setCurrentOrderTime] = useState([]);
@@ -176,11 +178,7 @@ function RegisterForm({ onClickCloseRegisterForm, roomId, typeOfRoom }) {
     const idUser = localStorage.getItem("idUser");
     // e.preventDefault();
     if (idUser === null) {
-      // e.preventDefault();
-
-      setTimeout(() => {
-        navigate("/signin");
-      }, 3000);
+      setStateLogin(true);
     } else {
       const bookTimeSlot = async () => {
         const payload = {
@@ -460,6 +458,8 @@ function RegisterForm({ onClickCloseRegisterForm, roomId, typeOfRoom }) {
             <ErrorNotification message={messageError} />
           </div>
         )}
+
+        {stateLogin && <RequiredLogin RequiredLogin={setStateLogin} />}
       </div>
 
       {/* {joinRoom && (
