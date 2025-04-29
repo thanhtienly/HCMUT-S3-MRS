@@ -14,61 +14,63 @@ import { yupResolver } from "@hookform/resolvers/yup";
 const cx = classNames.bind(styles);
 const DataTemporary = DataFake[0];
 const TimeResigter = DataTemporary.orders;
-const BookingSchema = Yup.object().shape({
-  date: Yup.string()
-    .required("Vui lòng chọn ngày đặt phòng")
-    .test("is-future", "Ngày đặt phòng phải từ hôm nay trở đi", (value) => {
-      if (!value) return false;
-      const selectedDate = new Date(value);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      return selectedDate >= today;
-    }),
-
-  startTime: Yup.string()
-    .required("Vui lòng chọn giờ bắt đầu")
-    .test(
-      "is-in-range",
-      "Giờ bắt đầu phải trong khoảng 07:00 đến 21:00",
-      (value) => {
-        if (!value) return false;
-        const [hour, minute] = value.split(":").map(Number);
-        const totalMinutes = hour * 60 + minute;
-        return totalMinutes >= 7 * 60 && totalMinutes <= 21 * 60;
-      }
-    ),
-
-  endTime: Yup.string()
-    .required("Vui lòng chọn giờ kết thúc")
-    .test(
-      "is-after-start",
-      "Giờ kết thúc phải sau giờ bắt đầu",
-      function (value) {
-        const { startTime } = this.parent;
-        return startTime && value && startTime < value;
-      }
-    )
-    .test(
-      "is-in-range",
-      "Giờ kết thúc phải trong khoảng 07:00 đến 21:00",
-      (value) => {
-        if (!value) return false;
-        const [hour, minute] = value.split(":").map(Number);
-        const totalMinutes = hour * 60 + minute;
-        return totalMinutes >= 7 * 60 && totalMinutes <= 21 * 60;
-      }
-    ),
-
-  password: Yup.string()
-    .required("Vui lòng nhập mã mời")
-    .min(6, "Mã mời phải có ít nhất 6 ký tự"),
-
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password")], "Xác nhận không khớp")
-    .required("Vui lòng xác nhận mã mời"),
-});
 
 function RegisterForm({ onClickCloseRegisterForm, roomId, typeOfRoom }) {
+  const BookingSchema = Yup.object().shape({
+    date: Yup.string()
+      .required("Vui lòng chọn ngày đặt phòng")
+      .test("is-future", "Ngày đặt phòng phải từ hôm nay trở đi", (value) => {
+        if (!value) return false;
+        const selectedDate = new Date(value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return selectedDate >= today;
+      }),
+
+    startTime: Yup.string()
+      .required("Vui lòng chọn giờ bắt đầu")
+      .test(
+        "is-in-range",
+        "Giờ bắt đầu phải trong khoảng 07:00 đến 21:00",
+        (value) => {
+          if (!value) return false;
+          const [hour, minute] = value.split(":").map(Number);
+          const totalMinutes = hour * 60 + minute;
+          return totalMinutes >= 7 * 60 && totalMinutes <= 21 * 60;
+        }
+      ),
+
+    endTime: Yup.string()
+      .required("Vui lòng chọn giờ kết thúc")
+      .test(
+        "is-after-start",
+        "Giờ kết thúc phải sau giờ bắt đầu",
+        function (value) {
+          const { startTime } = this.parent;
+          return startTime && value && startTime < value;
+        }
+      )
+      .test(
+        "is-in-range",
+        "Giờ kết thúc phải trong khoảng 07:00 đến 21:00",
+        (value) => {
+          if (!value) return false;
+          const [hour, minute] = value.split(":").map(Number);
+          const totalMinutes = hour * 60 + minute;
+          return totalMinutes >= 7 * 60 && totalMinutes <= 21 * 60;
+        }
+      ),
+    ...(typeOfRoom !== "Tự học" && {
+      password: Yup.string()
+        .required("Vui lòng nhập mã mời")
+        .min(6, "Mã mời phải có ít nhất 6 ký tự"),
+
+      confirmPassword: Yup.string()
+        .oneOf([Yup.ref("password")], "Xác nhận không khớp")
+        .required("Vui lòng xác nhận mã mời"),
+    }),
+  });
+
   const navigate = useNavigate();
   const [messageError, setMessageError] = useState("");
   const [date, setDate] = useState("");
@@ -125,7 +127,7 @@ function RegisterForm({ onClickCloseRegisterForm, roomId, typeOfRoom }) {
           } else {
             let message = "";
             const dataMessage = data.message;
-            console.log(dataMessage);
+
             if (dataMessage == "The room's full") {
               message = "Phòng học đã đủ số lượng";
             } else if (dataMessage == "Invalid secret") {
@@ -150,8 +152,6 @@ function RegisterForm({ onClickCloseRegisterForm, roomId, typeOfRoom }) {
       .then((response) => response.json())
       .then((data) => {
         const state = data.success;
-        // console.log(roomId);
-        // console.log(data.data);
 
         if (state && data.data !== undefined) {
           setOrderTime(data.data.length !== 0 ? data.data : []);
@@ -177,7 +177,10 @@ function RegisterForm({ onClickCloseRegisterForm, roomId, typeOfRoom }) {
     // e.preventDefault();
     if (idUser === null) {
       // e.preventDefault();
-      navigate("/signin");
+
+      setTimeout(() => {
+        navigate("/signin");
+      }, 3000);
     } else {
       const bookTimeSlot = async () => {
         const payload = {
@@ -185,10 +188,22 @@ function RegisterForm({ onClickCloseRegisterForm, roomId, typeOfRoom }) {
           roomId: roomId,
           from: startTime,
           to: endTime,
-          secret: confirmPassword, //
+          secret: confirmPassword || "12345678", //
         };
 
         try {
+          if (typeOfRoom !== "Tự học") {
+            await BookingSchema.validate(
+              { date, startTime, endTime, password, confirmPassword },
+              { abortEarly: false }
+            );
+          } else {
+            await BookingSchema.validate(
+              { date, startTime, endTime },
+              { abortEarly: false }
+            );
+          }
+
           await BookingSchema.validate(
             { date, startTime, endTime, password, confirmPassword },
             { abortEarly: false }
@@ -207,8 +222,6 @@ function RegisterForm({ onClickCloseRegisterForm, roomId, typeOfRoom }) {
           );
 
           const result = await response.json();
-          // console.log("result.message");
-          // console.log(result.message);
 
           const isReserved = "Overlap time slot";
           if (result.message == isReserved) {
@@ -252,6 +265,7 @@ function RegisterForm({ onClickCloseRegisterForm, roomId, typeOfRoom }) {
             class="booking-form"
             onSubmit={(e) => {
               e.preventDefault();
+
               handleSubmit(() => handleOnClickRoomRegister())();
             }}
           >
@@ -303,39 +317,45 @@ function RegisterForm({ onClickCloseRegisterForm, roomId, typeOfRoom }) {
                 </p>
               )}
             </div>
-            <div className={cx("form-group")}>
-              <label htmlFor="password">Tạo mã mời</label>
-              <input
-                {...register("password")}
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              {errors.password && (
-                <p className="errorFormValidator_css">
-                  {errors.password.message}
-                </p>
-              )}
-            </div>
+            {typeOfRoom !== "Tự học" && (
+              <>
+                <div className={cx("form-group")}>
+                  <label htmlFor="password">Tạo mã mời</label>
+                  <input
+                    {...register("password", {
+                      required: typeOfRoom !== "Tự học" ? true : false,
+                    })}
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  {errors.password && (
+                    <p className="errorFormValidator_css">
+                      {errors.password.message}
+                    </p>
+                  )}
+                </div>
 
-            <div className={cx("form-group")}>
-              <label htmlFor="confirmPassword">Xác nhận</label>
-              <input
-                {...register("confirmPassword")}
-                type="password"
-                id="confirmPassword"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-              />
-              {errors.confirmPassword && (
-                <p className="errorFormValidator_css">
-                  {errors.confirmPassword.message}
-                </p>
-              )}
-            </div>
+                <div className={cx("form-group")}>
+                  <label htmlFor="confirmPassword">Xác nhận</label>
+                  <input
+                    {...register("confirmPassword", {
+                      required: typeOfRoom !== "Tự học" ? true : false,
+                    })}
+                    type="password"
+                    id="confirmPassword"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                  {errors.confirmPassword && (
+                    <p className="errorFormValidator_css">
+                      {errors.confirmPassword.message}
+                    </p>
+                  )}
+                </div>
+              </>
+            )}
 
             <button
               type="submit"

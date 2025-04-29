@@ -155,8 +155,7 @@ function RoomDetail() {
                   <i className="fa fa-star rating-icon"></i>
                 </div>
                 <h3 className="product-price">
-                  Tòa: {building[roomDetail.building]} - Tầng:{" "}
-                  {roomDetail.floor}
+                  Tòa: {roomDetail.building} - Tầng: {roomDetail.floor}
                 </h3>
                 <h2 className="product-price">
                   Phòng: {roomDetail.roomNumber}
