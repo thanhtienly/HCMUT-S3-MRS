@@ -101,7 +101,8 @@
         "roomId": "",
         "from": "hh:mm",
         "to": "hh:mm",
-        "secret": "Optional"
+        "secret": "Optional",
+        "members":["2213173","2213111","123456"]
       }
     },
     "ResponseBody": {

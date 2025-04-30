@@ -195,3 +195,104 @@ endTime: "2025-04-25T15:30:00",
   Data reponse: true | false
 - 5 save booking information
 - 6 Get booking history information of user with id i
+
+## Api need version 2
+
+1)add field members in book time slot
+{
+"Name": "Book a Time Slot",
+"Endpoint": "http://localhost:8000/booking/time-slot",
+"Request": {
+"method": "POST",
+"headers": {
+"user-id": ""
+},
+"body": {
+"date": "YYYY-MM-DD",
+"roomId": "",
+"from": "hh:mm",
+"to": "hh:mm",
+"secret": "Optional",
+"members":["22131ascas73","22131ascas11","1asd23456"]
+
+}
+},
+"ResponseBody": {
+"success": "boolean",
+"data": {
+"id": "",
+"roomId": "",
+"userId": "",
+"from": "2025-04-18T07:30",
+"to": "2025-04-18T07:49",
+"reservedAt": "2025-04-13T02:15",
+"state": "Booked"
+}
+}
+},
+
+2. add field members List booking history, add future kick member in a room
+   {
+   "Name": "List booking history API (Student Only)",
+   "Endpoint": "http://localhost:8000/booking/history",
+   "Request": {
+   "method": "GET",
+   "headers": {
+   "user-id": ""
+   }
+   },
+   "ResponseBody": {
+   "success": "boolean",
+   "data": [
+   {
+   "id": "1",
+   "roomId": "1",
+   "building": "H6",
+   "floor": "1",
+   "roomNumber": "H6-101",
+   "description": "Phòng học hỗ trợ các thiết bị cơ bản như, đèn bàn, quạt, dây sạc, ổ điện",
+   "maxSeat": 4,
+   "from": "2025-04-14T07:30",
+   "to": "2025-04-14T07:49",
+   "historyTime": "2025-04-13T02:09",
+   "members":["2213b234das173","22sada13111","asdasd"]
+   "currentSeat": 1
+   }
+   ]
+   }
+   },
+
+3) Returns top 5 most booked rooms ever
+   {
+   [
+   {
+   "quantity":10,
+   "roomNumber": "H6-101"
+   },
+   {
+   "quantity":4,
+   "roomNumber": "H6-102"
+   },
+   {
+   "quantity":2,
+   "roomNumber": "H6-103"
+   },
+   ]
+   }
+4) Returns the 5 most booked classrooms within 1 month from the current time
+   {
+   [
+   {
+   "quantity":2,
+   "roomNumber": "H6-101"
+   },
+   {
+   "quantity":1,
+   "roomNumber": "H6-102"
+   },
+   {
+   "quantity":1,
+   "roomNumber": "H6-103"
+   },
+   ]
+   }
