@@ -1,0 +1,56 @@
+// .wrapper_search_list {
+//   //   position: fixed;
+//   position: absolute;
+//   background-color: white;
+//   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+//   z-index: 9999;
+//   border-radius: 8px;
+//   right: 30%;
+//   top: 95%;
+// }
+.wrapper_search_list {
+  //   position: fixed;
+  //   top: 15%;
+  //   left: 27.5%;
+  //   transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  border-radius: 8px;
+  width: 45%; /* cùng width với input */
+}
+
+.search_list {
+  list-style: none;
+  padding: 0 10px;
+  margin: 0;
+}
+
+.wrapper_item {
+  padding: 6px 0px;
+}
+
+.item {
+  &:hover {
+    background-color: rgb(234, 229, 229);
+    cursor: pointer;
+  }
+}
+
+.image {
+  height: 30px;
+  object-fit: cover;
+}
+
+.floor {
+  font-weight: 500;
+  padding-left: 5px;
+}
+
+.roomNumber {
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.type {
+}

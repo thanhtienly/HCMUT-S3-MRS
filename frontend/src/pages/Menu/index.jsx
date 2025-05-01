@@ -1,6 +1,6 @@
 import styles from "./styles.scss";
 import classNames from "classnames/bind";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SearchBar from "../../Component/SearchBar";
 import dataRoomListFake from "./DataFake";
 import { IconMenu, MenuIcon, SearchIcon } from "../../Component/Icon/Icon";
@@ -8,6 +8,7 @@ import RoomCard from "../../Component/RoomCard";
 import ReactPaginate from "react-paginate";
 import imageClassroom from "../../assets/bku07.jpg";
 import axios from "axios";
+import NavSearchBar from "../../Component/NavSeachBar/NavSeachBar";
 const cx = classNames.bind(styles);
 /*
   type: 0 tu hoc, 1 nhom  ,2 memtoring
@@ -83,20 +84,38 @@ const listBuilding = [
   },
 ];
 function Menu() {
+  const inputRef = useRef(null);
+  const [inputLeft, setInputLeft] = useState(0);
+  const [inputWidth, setInputWidth] = useState(0);
+
   const [typeRoom, setTypeRoom] = useState("Tự học");
   const [building, setBuilding] = useState("H1");
   const [currentPage, setCurrentPage] = useState(0);
   const [dataRoomList, setDataRoomList] = useState([]);
   const [dataRoom, setDataRoom] = useState(dataRoomListFake);
   const itemsPerPage = 8;
-  const [searchQuerry, setSearchQuerry] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [currentItems, setCurrentItems] = useState(
     dataRoomList.slice(0, 0 + itemsPerPage)
   );
+  const [navSearch, setNavSearch] = useState(false);
+
+  useEffect(() => {
+    const updatePosition = () => {
+      if (inputRef.current) {
+        const rect = inputRef.current.getBoundingClientRect();
+        setInputLeft(rect.left);
+        setInputWidth(rect.width);
+      }
+    };
+
+    updatePosition();
+    window.addEventListener("resize", updatePosition);
+    return () => window.removeEventListener("resize", updatePosition);
+  }, []);
 
   useEffect(
     function () {
-      // console.log(dataRoomList);
       let newDataRoom = dataRoomList.filter(
         (room) => room.building === building && room.type === typeRoom
       );
@@ -105,22 +124,11 @@ function Menu() {
     [building, typeRoom]
   );
 
-  // useEffect(
-  //   function () {
-  //     let newDataRoom = dataRoomList.filter((room) => room.type === typeRoom);
-  //     setDataRoom(newDataRoom);
-  //   },
-  //   [typeRoom]
-  // );
-
-  // Get data
-
   const fetchRoomData = async () => {
     try {
       const response = await axios.get("http://localhost:8000/room");
 
       setDataRoomList(response.data.data);
-      // console.log(response.data.data);
     } catch (error) {
       console.error("Error fetching branch data:", error);
     }
@@ -128,18 +136,6 @@ function Menu() {
   useEffect(() => {
     fetchRoomData();
   }, []);
-  // useEffect(() => {
-  //   const url = "http://localhost:8000/room";
-  //   fetch(url, {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json",
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => setDataRoomList(data));
-  // }, []);
 
   // Tính toán danh sách sản phẩm hiển thị
 
@@ -150,40 +146,9 @@ function Menu() {
 
     setCurrentItems(dataRoom.slice(offset, offset + itemsPerPage));
   };
-  // useEffect(() => {
-  //   let listOfRoom = dataRoom.filter((room) => {
-  //     return room.name.toLowerCase().includes(searchQuerry.toLowerCase());
-  //   });
-  //   setCurrentItems(
-  //     listOfRoom.slice(
-  //       currentPage * itemsPerPage,
-  //       currentPage * itemsPerPage + itemsPerPage
-  //     )
-  //   );
-  // }, [searchQuerry]);
-  // useEffect(() => {
-  //   const query = searchQuerry.toLowerCase().trim();
 
-  //   const listOfRoom = dataRoom.filter((room) => {
-  //     // Chuyển tất cả các giá trị về string để so sánh
-  //     return (
-  //       room.building.toString().toLowerCase().includes(query) ||
-  //       room.floor.toString().toLowerCase().includes(query) ||
-  //       room.roomNumber.toString().toLowerCase().includes(query) ||
-  //       room.maxSeat.toString().toLowerCase().includes(query) ||
-  //       room.type.toString().toLowerCase().includes(query)
-  //     );
-  //   });
-
-  //   setCurrentItems(
-  //     listOfRoom.slice(
-  //       currentPage * itemsPerPage,
-  //       currentPage * itemsPerPage + itemsPerPage
-  //     )
-  //   );
-  // }, [searchQuerry, currentPage, dataRoom]);
   useEffect(() => {
-    const filters = parseSearchQuery(searchQuerry);
+    const filters = parseSearchQuery(searchQuery);
 
     const listOfRoom = dataRoom.filter((room) => {
       if (filters.floor != undefined && room.floor != filters.floor)
@@ -208,7 +173,7 @@ function Menu() {
         currentPage * itemsPerPage + itemsPerPage
       )
     );
-  }, [searchQuerry, currentPage, dataRoom]);
+  }, [searchQuery, currentPage, dataRoom]);
 
   return (
     // <div className={cx("container-fluid")}>
@@ -224,14 +189,30 @@ function Menu() {
       <nav className={cx("wrapper_navbar")}>
         <div className={cx("wrapper_search")}>
           <input
+            ref={inputRef}
             className={cx("wrapper_search_inputComponent")}
             type="search"
             placeholder="Tìm kiếm phòng học..."
-            onChange={(e) => setSearchQuerry(e.target.value)}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onClick={() => setNavSearch(true)}
+            onBlur={() => setNavSearch(false)}
+            onFocus={() => setNavSearch(true)}
           />
           <button className={cx("wrapper_button_search")} type="submit">
             <SearchIcon className={cx("wrapper_iconSearch")} />
           </button>
+          {navSearch && (
+            <NavSearchBar
+              currentItems={currentItems}
+              left={inputLeft}
+              width={inputWidth}
+            />
+          )}
+          {/* <NavSearchBar
+            currentItems={currentItems}
+            left={inputLeft}
+            width={inputWidth}
+          /> */}
         </div>
       </nav>
 
@@ -308,25 +289,6 @@ function Menu() {
         {/* Danh sách sản phẩm */}
         <div className={cx("col-md-10")}>
           <div className={cx("row")}>
-            {/* {[...Array(8)].map((_, index) => (
-              <div
-                key={index}
-                className={cx("col-lg-3 col-md-4 col-sm-6 mb-4")}
-              >
-                <div className={cx("card")}>
-                  <img
-                    src="https://via.placeholder.com/150"
-                    className={cx("card-img-top")}
-                    alt="Sản phẩm"
-                  />
-                  <div className={cx("card-body")}>
-                    <h5 className={cx("card-title")}>Sản phẩm {index + 1}</h5>
-                    <p className={cx("card-text")}>Giá: 100.000₫</p>
-                    <button className={cx("btn btn-primary")}>Mua ngay</button>
-                  </div>
-                </div>
-              </div>
-            ))} */}
             {currentItems.map((data) => (
               <RoomCard data={data} />
             ))}
