@@ -20,6 +20,7 @@ const Header = () => {
   const navLinks = [
     { path: "/", label: "TRANG CHỦ" },
     { path: "/about", label: "VỀ HCMUT" },
+    { path: "/roomPage", label: "PHÒNG HỌC" },
     { path: "/menu", label: "ĐẶT CHỖ HỌC" },
     { path: "/history", label: "QUẢN LÝ ĐẶT CHỖ" },
     { path: "/contact", label: "PHẢN HỒI" },
