@@ -23,6 +23,7 @@ const Header = () => {
     { path: "/roomPage", label: "PHÒNG HỌC" },
     { path: "/menu", label: "ĐẶT CHỖ HỌC" },
     { path: "/history", label: "QUẢN LÝ ĐẶT CHỖ" },
+    { path: "/bookingChart", label: "Thống kê đặt chỗ" },
     { path: "/contact", label: "PHẢN HỒI" },
   ];
 

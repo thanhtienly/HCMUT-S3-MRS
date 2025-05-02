@@ -13,6 +13,7 @@ import Success from "../pages/Message/Success";
 import Report from "../layout/MessageReport/Report";
 import Profile from "../pages/UserProfile";
 import RoomPage from "../pages/RoomPage/RoomPage";
+import BookingHistoryChart from "../pages/BookingHistoryChar/BookingHistoryChart";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       { path: "contact/report/successful", element: <Report /> },
       { path: "profile", element: <Profile /> },
       { path: "roomPage", element: <RoomPage /> },
+      { path: "bookingChart", element: <BookingHistoryChart /> },
     ],
   },
 ]);

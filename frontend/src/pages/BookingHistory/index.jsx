@@ -4,6 +4,7 @@ import styles from "./BookingHistory.module.scss";
 import { FaTrash, FaEye } from "react-icons/fa";
 import ReactPaginate from "react-paginate";
 import pictureRoom from "../../assets/pictureRoom.jpg";
+import BookingHistoryChart from "../BookingHistoryChar/BookingHistoryChart";
 const cx = classNames.bind(styles);
 const bookings = [
   {
@@ -173,106 +174,108 @@ const BookingHistory = () => {
       });
   }, []);
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Lịch sử đặt phòng</h2>
-      <ul className={styles.list}>
-        {historyBooking.map((booking) => (
-          <li
-            onClick={() => handleViewDetails(booking)}
-            key={booking.id}
-            className={styles.item}
-          >
-            <img src={pictureRoom} alt="Room" className={styles.image} />
-            <div className={styles.info}>
+    <>
+      <div className={styles.container}>
+        <h2 className={styles.title}>Lịch sử đặt phòng</h2>
+        <ul className={styles.list}>
+          {historyBooking.map((booking) => (
+            <li
+              onClick={() => handleViewDetails(booking)}
+              key={booking.id}
+              className={styles.item}
+            >
+              <img src={pictureRoom} alt="Room" className={styles.image} />
+              <div className={styles.info}>
+                <p>
+                  <strong>Toà nhà:</strong> {booking.building}
+                </p>
+                <p>
+                  <strong>Tầng:</strong> {booking.floor}
+                </p>
+                <p>
+                  <strong>Phòng:</strong> {booking.roomNumber}
+                </p>
+                <p>
+                  <strong>Thời gian đặt:</strong>{" "}
+                  {new Date(booking.historyTime).toLocaleString()}
+                </p>
+              </div>
+              <div className={styles.actions}>
+                {/* <button
+                  className={styles.viewButton}
+                  onClick={() => handleViewDetails(booking)}
+                >
+                  <FaEye />
+                </button> */}
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => handleDelete(booking.id)}
+                >
+                  <FaTrash />
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        {selectedBooking && (
+          <div className={cx("wrapper_specifies_booking")}>
+            <div className={cx("wrapper_child_booking")}>
+              <h3 className={cx("wrapper_bookingHis_title")}>Chi tiết phòng</h3>
               <p>
-                <strong>Toà nhà:</strong> {booking.building}
+                <strong>Toà nhà:</strong> {selectedBooking.building}
+                <strong className={cx("wrapper_booking_floor")}>
+                  Tầng:
+                </strong>{" "}
+                {selectedBooking.floor}
+              </p>
+
+              <p>
+                <strong>Phòng:</strong> {selectedBooking.roomNumber}
               </p>
               <p>
-                <strong>Tầng:</strong> {booking.floor}
+                <strong>Số chỗ tối đa:</strong> {selectedBooking.maxSeat}
               </p>
               <p>
-                <strong>Phòng:</strong> {booking.roomNumber}
+                <strong>Ngày:</strong> {selectedBooking.from.split("T")[0]}
               </p>
               <p>
+                <strong>Thời gian bắt đầu:</strong>{" "}
+                {selectedBooking.from.split("T")[1]}
+              </p>
+              <p>
+                <strong>Thời gian kết thúc:</strong>{" "}
+                {selectedBooking.to.split("T")[1]}
+              </p>
+              <p>
+                <strong>Mô tả:</strong> {selectedBooking.description}
+              </p>
+              <p className={cx("wrapper_timeBooking")}>
                 <strong>Thời gian đặt:</strong>{" "}
-                {new Date(booking.historyTime).toLocaleString()}
+                {new Date(selectedBooking.historyTime).toLocaleString()}
               </p>
-            </div>
-            <div className={styles.actions}>
-              {/* <button
-                className={styles.viewButton}
-                onClick={() => handleViewDetails(booking)}
-              >
-                <FaEye />
-              </button> */}
               <button
-                className={styles.deleteButton}
-                onClick={() => handleDelete(booking.id)}
+                className={styles.closeButton}
+                onClick={() => setSelectedBooking(null)}
               >
-                <FaTrash />
+                Đóng
               </button>
             </div>
-          </li>
-        ))}
-      </ul>
-
-      {selectedBooking && (
-        <div className={cx("wrapper_specifies_booking")}>
-          <div className={cx("wrapper_child_booking")}>
-            <h3 className={cx("wrapper_bookingHis_title")}>Chi tiết phòng</h3>
-            <p>
-              <strong>Toà nhà:</strong> {selectedBooking.building}
-              <strong className={cx("wrapper_booking_floor")}>
-                Tầng:
-              </strong>{" "}
-              {selectedBooking.floor}
-            </p>
-
-            <p>
-              <strong>Phòng:</strong> {selectedBooking.roomNumber}
-            </p>
-            <p>
-              <strong>Số chỗ tối đa:</strong> {selectedBooking.maxSeat}
-            </p>
-            <p>
-              <strong>Ngày:</strong> {selectedBooking.from.split("T")[0]}
-            </p>
-            <p>
-              <strong>Thời gian bắt đầu:</strong>{" "}
-              {selectedBooking.from.split("T")[1]}
-            </p>
-            <p>
-              <strong>Thời gian kết thúc:</strong>{" "}
-              {selectedBooking.to.split("T")[1]}
-            </p>
-            <p>
-              <strong>Mô tả:</strong> {selectedBooking.description}
-            </p>
-            <p className={cx("wrapper_timeBooking")}>
-              <strong>Thời gian đặt:</strong>{" "}
-              {new Date(selectedBooking.historyTime).toLocaleString()}
-            </p>
-            <button
-              className={styles.closeButton}
-              onClick={() => setSelectedBooking(null)}
-            >
-              Đóng
-            </button>
           </div>
-        </div>
-      )}
-      <ReactPaginate
-        previousLabel={"Trang trước"}
-        nextLabel={"Trang sau"}
-        breakLabel={"..."}
-        pageCount={Math.ceil(lengthBooking / itemsPerPage)}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={3}
-        onPageChange={handlePageClick}
-        containerClassName={"pagination"}
-        activeClassName={"active"}
-      />
-    </div>
+        )}
+        <ReactPaginate
+          previousLabel={"Trang trước"}
+          nextLabel={"Trang sau"}
+          breakLabel={"..."}
+          pageCount={Math.ceil(lengthBooking / itemsPerPage)}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={3}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          activeClassName={"active"}
+        />
+      </div>
+    </>
   );
 };
 
