@@ -62,7 +62,7 @@ const BookingHistoryChart = () => {
       {renderChart(
         "5 Phòng học được đặt nhiều nhất  ",
         allTimeData,
-        "#4B9EFF",
+        "var(--primary)",
         "#FF6347"
       )}
       {renderChart(
